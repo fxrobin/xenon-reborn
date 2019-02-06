@@ -1,0 +1,2 @@
+- This folder contains JAR files that are unavailable in a central maven repository.
+- JAR are registered during building through a configuration within the pom.xml
