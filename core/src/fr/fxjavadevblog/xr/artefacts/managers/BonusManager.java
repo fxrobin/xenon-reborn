@@ -5,9 +5,9 @@ import java.util.List;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import fr.fxjavadevblog.xr.artefacts.extra.Bonus;
-import fr.fxjavadevblog.xr.artefacts.extra.BonusType;
-import fr.fxjavadevblog.xr.artefacts.friendly.Ship;
+import fr.fxjavadevblog.xr.artefacts.collectables.Bonus;
+import fr.fxjavadevblog.xr.artefacts.collectables.BonusType;
+import fr.fxjavadevblog.xr.artefacts.friendly.ship.Ship;
 import fr.fxjavadevblog.xr.commons.libs.SoundAsset;
 
 /**
@@ -75,6 +75,7 @@ public class BonusManager
 		switch (bonus.getType())
 		{
 			case NORMAL_BONUS:
+				ScoreManager.getInstance().add(100);
 				break;
 			case POWER_UP_BONUS:
 				ship.increaseLife(10); 

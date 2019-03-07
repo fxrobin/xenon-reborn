@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Random;
 
 import fr.fxjavadevblog.xr.artefacts.Artefact;
+import fr.fxjavadevblog.xr.artefacts.collectables.BonusType;
 import fr.fxjavadevblog.xr.artefacts.enemies.Bullet;
-import fr.fxjavadevblog.xr.artefacts.extra.BonusType;
 
 /**
  * gestionnaire de collisions entre des "targets" (cibles) et des "projectiles".

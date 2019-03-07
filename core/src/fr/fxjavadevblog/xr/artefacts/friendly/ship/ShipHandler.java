@@ -1,4 +1,4 @@
-package fr.fxjavadevblog.xr.artefacts.friendly;
+package fr.fxjavadevblog.xr.artefacts.friendly.ship;
 
 import com.badlogic.gdx.Gdx;
 
@@ -6,6 +6,8 @@ import fr.fxjavadevblog.xr.commons.Global;
 import fr.fxjavadevblog.xr.commons.UserControls;
 import fr.fxjavadevblog.xr.commons.UserControls.Control;
 import fr.fxjavadevblog.xr.commons.utils.GdxCommons;
+import fr.fxjavadevblog.xr.commons.utils.GameControls;
+import fr.fxjavadevblog.xr.screens.AbstractScreen;
 
 /**
  * cette classe change l'état du vaisseau en fonction des entrées du clavier.
@@ -54,13 +56,13 @@ public final class ShipHandler
 
 		float vY = ship.getVectorY();
 
-		if (Gdx.input.isKeyPressed(keyUp))
+		if (AbstractScreen.getUserInput().isPressed(GameControls.UP))
 		{
 			vControl = ShipInput.Vertical.UP;
 			vY += Global.SHIP_ACCELLERATION;
 			ship.setVectorY(vY > Global.SHIP_SPEED ? Global.SHIP_SPEED : vY);
 		}
-		else if (Gdx.input.isKeyPressed(keyDown))
+		else if (AbstractScreen.getUserInput().isPressed(GameControls.DOWN))
 		{
 			vControl = ShipInput.Vertical.DOWN;
 			vY -= Global.SHIP_ACCELLERATION;
@@ -80,13 +82,13 @@ public final class ShipHandler
 
 		float vX = ship.getVectorX();
 
-		if (Gdx.input.isKeyPressed(keyLeft))
+		if ((AbstractScreen.getUserInput().isPressed(GameControls.LEFT)))
 		{
 			hControl = ShipInput.Horizontal.LEFT;
 			vX -= Global.SHIP_ACCELLERATION;
 			ship.setVectorX(vX < -Global.SHIP_SPEED ? -Global.SHIP_SPEED : vX);
 		}
-		else if (Gdx.input.isKeyPressed(keyRight))
+		else if ((AbstractScreen.getUserInput().isPressed(GameControls.RIGHT)))
 		{
 			hControl = ShipInput.Horizontal.RIGHT;
 			vX += Global.SHIP_ACCELLERATION;
@@ -96,17 +98,14 @@ public final class ShipHandler
 
 	private static void handleInertia(Ship ship)
 	{
-		float vX = ship.getVectorX();
-		float vY = ship.getVectorY();
-
 		if (hControl == ShipInput.Horizontal.NONE)
 		{
-			ship.setVectorX(computeInertia(vX));
+			ship.setVectorX(computeInertia(ship.getVectorX()));
 		}
 
 		if (vControl == ShipInput.Vertical.NONE)
 		{
-			ship.setVectorY(computeInertia(vY));
+			ship.setVectorY(computeInertia(ship.getVectorY()));
 		}
 	}
 
@@ -126,7 +125,7 @@ public final class ShipHandler
 
 	private static void checkShield(Ship ship)
 	{
-		if (Gdx.input.isKeyJustPressed(UserControls.get(Control.SHIELD)))
+		if ((AbstractScreen.getUserInput().isPressed(GameControls.L1)))
 		{
 			ship.switchShield();
 		}
@@ -134,7 +133,7 @@ public final class ShipHandler
 
 	private static void checkSecondWeapon(Ship ship)
 	{
-		if (Gdx.input.isKeyPressed(UserControls.get(Control.CHARGE_WEAPON)))
+		if ((AbstractScreen.getUserInput().isPressed(GameControls.B)))
 		{
 			ship.weaponCharge();
 		}

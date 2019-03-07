@@ -10,62 +10,65 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+import fr.fxjavadevblog.xr.commons.libs.AssetLib;
 import fr.fxjavadevblog.xr.commons.libs.TextureAsset;
 
-public final class FontUtils
+public enum FontUtils
 {
-	private static final Log log = LogFactory.getLog(FontUtils.class);
-	private static BitmapFont bitmapFont;
-	private static int fontWidth;
-	private static int fontHeight;
-	private static String stringMap;
+	FONT_GREEN("/fonts/font-green.properties"), 
+	FONT_XENON("/fonts/font-xenon-2.properties"), 
+	FONT_BLUE("/fonts/font-blue.properties");
 
-	static
+	private final Log log = LogFactory.getLog(FontUtils.class);
+
+	private int fontWidth;
+	private int fontHeight;
+	private String stringMap;
+	private BitmapFont bitmapFont;
+
+	private FontUtils(String propertyFile)
 	{
 		Properties config = new Properties();
 		try
 		{
-			Texture font = TextureAsset.FONT.get();
-			config.load(FontUtils.class.getResourceAsStream("/fonts/font-blue.properties"));
+			config.load(FontUtils.class.getResourceAsStream(propertyFile));
+			Texture font = AssetLib.getInstance().get(config.getProperty("font-file"), Texture.class);
 			fontWidth = Integer.parseInt(config.getProperty("letter-width"));
 			fontHeight = Integer.parseInt(config.getProperty("letter-height"));
 			stringMap = config.getProperty("string-map");
 			bitmapFont = BitmapFont.build(font, fontWidth, fontHeight, stringMap);
-			log.info("Font loaded");
+			
+			log.info("Font loaded : " + propertyFile);
+			log.info("- font-file : " + config.getProperty("font-file"));
+			log.info("- letter-width : " + fontWidth);
+			log.info("- letter-height : " + fontHeight);
+			log.info("- string-map : " + stringMap);
+			
+			
 		}
 		catch (IOException e)
 		{
-			log.error("Impossible de lire le fichier de ressource de font.");
+			log.error("Impossible de lire le fichier de ressource de font : " + propertyFile);
 		}
 
 	}
 
-	private FontUtils()
-	{
-		/* protection */
-	}
-
-	public static int getWidth(String txt)
+	public int getWidth(String txt)
 	{
 		return txt.length() * fontWidth;
 	}
 
-	public static int getHeight(String txt) /* NOSONAR */
+	public int getHeight(String txt) /* NOSONAR */
 	{
 		return fontHeight;
 	}
 
-	public static int getFontWidth()
+	public int getFontWidth()
 	{
 		return fontWidth;
 	}
 
-	public static void setFontHeight(int fontHeight)
-	{
-		FontUtils.fontHeight = fontHeight;
-	}
-
-	public static void print(Batch b, float x, float y, String txt)
+	public void print(Batch b, float x, float y, String txt)
 	{
 		for (int i = 0; i < txt.length(); i++)
 		{
@@ -73,13 +76,13 @@ public final class FontUtils
 		}
 	}
 
-	public static void print(Batch batch, float positionX, float positionY, char character)
+	public void print(Batch batch, float positionX, float positionY, char character)
 	{
 		TextureRegion tr = bitmapFont.getChar(character);
 		if (tr != null) batch.draw(tr, positionX, positionY);
 	}
 
-	public static TextureRegion getTextureRegionOfChar(char character)
+	public TextureRegion getTextureRegionOfChar(char character)
 	{
 		return bitmapFont.getChar(character);
 	}

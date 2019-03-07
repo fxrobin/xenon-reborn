@@ -1,5 +1,8 @@
 package fr.fxjavadevblog.xr.commons.fonts;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -18,19 +21,22 @@ public class GdxBitmapString extends Displayable
 	private int letterWidth;
 
 	private float scale;
+	
+	private FontUtils font;
 
-	public GdxBitmapString(String text, float scale)
+	public GdxBitmapString(FontUtils font, String text, float scale)
 	{
 		super();
+		this.font = font;
 		this.scale = scale;
-		this.width = FontUtils.getWidth(text);
-		this.letterWidth = FontUtils.getFontWidth();
+		this.width = font.getWidth(text);
+		this.letterWidth = font.getFontWidth();
 		this.populateSprites(text);
 	}
 
-	public GdxBitmapString(String text)
+	public GdxBitmapString(FontUtils font, String text)
 	{
-		this(text, 1.0f);
+		this(font, text, 1.0f);
 	}
 
 	/*
@@ -38,19 +44,24 @@ public class GdxBitmapString extends Displayable
 	 */
 	private void populateSprites(String text)
 	{
-		sprites = new Sprite[text.length()];
-		int index = 0;
-		for (char c : text.toCharArray())
+		sprites = allocateSpriteArray(text);
+		int spriteIndex = 0;
+		for (char currentChar : text.toCharArray())
 		{
-			TextureRegion tr = FontUtils.getTextureRegionOfChar(c);
+			TextureRegion tr = font.getTextureRegionOfChar(currentChar);
 			Sprite s = (tr != null) ? new Sprite(tr) : null;
 			if (s != null)
 			{
 				s.setScale(scale);
 			}
-			sprites[index++] = s;
+			sprites[spriteIndex++] = s;
 		}
 		this.width = (text.length() * (int) (letterWidth * scale));
+	}
+
+	private Sprite[] allocateSpriteArray(String text)
+	{
+		return new Sprite[text.length()];
 	}
 
 	public int getWidth()
@@ -73,17 +84,21 @@ public class GdxBitmapString extends Displayable
 			}
 			offsetX += letterWidth * scale;
 		}
+		
 	}
 
 	@Override
 	public void render(SpriteBatch batch, float delta)
 	{
-		for (Sprite s : sprites)
+		// Arrays.stream(sprites).filter(Objects::nonNull).forEach(s -> s.draw(batch));
+		
+		for(Sprite s : sprites)
 		{
-			if (s != null)
+			if (s!=null)
 			{
 				s.draw(batch);
 			}
 		}
+		
 	}
 }

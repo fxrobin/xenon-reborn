@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
-import fr.fxjavadevblog.xr.artefacts.friendly.Ship;
+import fr.fxjavadevblog.xr.artefacts.friendly.ship.Ship;
 import fr.fxjavadevblog.xr.artefacts.managers.ScoreManager;
 import fr.fxjavadevblog.xr.commons.Global;
 import fr.fxjavadevblog.xr.commons.fonts.FontUtils;
@@ -101,7 +101,7 @@ public class DashBoard
 	private void renderScore()
 	{
 		SpriteBatch batch = gamePlayScreen.getBatch();
-		FontUtils.print(batch, 5, Global.height - 43f, String.format("%06d", ScoreManager.getInstance().getScore()));
+		FontUtils.FONT_BLUE.print(batch, 5, Global.height - 43f, String.format("%06d", ScoreManager.getInstance().getScore()));
 	}
 
 	private void renderLifeCount()

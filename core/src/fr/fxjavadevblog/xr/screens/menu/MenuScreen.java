@@ -14,6 +14,7 @@ import com.badlogic.gdx.math.Interpolation;
 import fr.fxjavadevblog.xr.commons.Global;
 import fr.fxjavadevblog.xr.commons.displays.Blinker;
 import fr.fxjavadevblog.xr.commons.displays.Interpolator;
+import fr.fxjavadevblog.xr.commons.fonts.FontUtils;
 import fr.fxjavadevblog.xr.commons.fonts.GdxBitmapString;
 import fr.fxjavadevblog.xr.commons.fonts.GdxTrueTypeString;
 import fr.fxjavadevblog.xr.commons.fonts.TrueTypeFont;
@@ -31,7 +32,7 @@ import fr.fxjavadevblog.xr.screens.XenonScreen;
 
 public class MenuScreen extends AbstractScreen
 {
-	private static final String MSG = "PRESS SPACEBAR";
+	private static final String MSG = "PRESS SPACE BAR";
 	private static Log log = LogFactory.getLog(MenuScreen.class);
 
 	private BackgroundTravelling backgroundTravelling;
@@ -41,8 +42,13 @@ public class MenuScreen extends AbstractScreen
 	private Interpolator interpolatorY;
 
 	private Texture titleTexture;
+	private Texture ghostBustersTexture;
+	
 	private float titleX;
 	private float titleY;
+	
+	private float gbX;
+	private float gbY;
 
 	private Monitor monitor;
 	private DisplayMode currentMode;
@@ -57,9 +63,15 @@ public class MenuScreen extends AbstractScreen
 		super(controler, batch);
 		log.info("Instanciation de MenuScreen");
 		backgroundTravelling = new BackgroundTravelling();
+		
 		titleTexture = TextureAsset.TITLE.get();
-		titleX = (Global.width - titleTexture.getWidth()) / 2f;
-		titleY = (Global.height - titleTexture.getHeight()) / 2f;
+		titleX = GdxCommons.calculateCenteredPositionX(titleTexture);
+		titleY = GdxCommons.calculateCenteredPositionY(titleTexture);
+		
+		ghostBustersTexture = TextureAsset.GHOSTBUSTERS.get();
+		gbX = GdxCommons.calculateCenteredPositionX(ghostBustersTexture);
+		gbY = titleY + titleTexture.getHeight() + 10;
+		
 		monitor = Gdx.graphics.getMonitor();
 		currentMode = Gdx.graphics.getDisplayMode(monitor);
 		message = new GdxTrueTypeString(TrueTypeFont.COMPUTER_30_WHITE.getFont(), "");
@@ -71,7 +83,7 @@ public class MenuScreen extends AbstractScreen
 
 	private void createBlinkingMessage()
 	{
-		pressSpaceBarMessage = new GdxBitmapString(MSG, 1.5f);
+		pressSpaceBarMessage = new GdxBitmapString(FontUtils.FONT_XENON, MSG, 1.5f);
 		interpolatorX = new Interpolator(Interpolation.sine, 1f, 5, (Global.width - pressSpaceBarMessage.getWidth()) / 2f);
 		interpolatorY = new Interpolator(Interpolation.pow2, 0.5f, 10, (float) (Global.height - titleTexture.getHeight()) / 2 - 50);
 		pressSpaceBarMessage.setPosition(interpolatorX.getOriginalValue(), interpolatorY.getOriginalValue());
@@ -97,10 +109,16 @@ public class MenuScreen extends AbstractScreen
 		this.getBatch().begin();
 		this.backgroundTravelling.translateBackGround(deltaTime);
 		this.backgroundTravelling.drawBackGround(this.getBatch());
+		this.drawGhostBusters();
 		this.drawTitle();
 		this.drawDisplayMode();
 		this.drawBlinkingMessage(deltaTime);
 		this.getBatch().end();
+	}
+
+	private void drawGhostBusters()
+	{
+		this.getBatch().draw(ghostBustersTexture, gbX, gbY);
 	}
 
 	private void drawBlinkingMessage(float deltaTime)

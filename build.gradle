@@ -46,7 +46,6 @@ project(":desktop") {
         compile project(":core")
         compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
-        compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
         compile "com.badlogicgames.gdx:gdx-controllers-desktop:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-controllers-platform:$gdxVersion:natives-desktop"
         compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"     
@@ -61,6 +60,7 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
         compile "net.dermetfan.libgdx-utils:libgdx-utils:0.13.4"
+        compile "com.kennycason:gdx-controller:1.1"
         compile fileTree(dir: '../libs', include: ['*.jar'])
         runtime group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
   		runtime group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'

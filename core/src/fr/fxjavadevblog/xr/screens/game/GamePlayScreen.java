@@ -5,8 +5,9 @@ import java.util.List;
 
 import fr.fxjavadevblog.xr.artefacts.Artefact;
 import fr.fxjavadevblog.xr.artefacts.ArtefactsScene;
-import fr.fxjavadevblog.xr.artefacts.friendly.Ship;
-import fr.fxjavadevblog.xr.artefacts.friendly.ShipHandler;
+import fr.fxjavadevblog.xr.artefacts.friendly.ship.Ship;
+import fr.fxjavadevblog.xr.artefacts.friendly.ship.ShipHandler;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -23,6 +24,7 @@ import fr.fxjavadevblog.xr.artefacts.managers.ScoreManager;
 import fr.fxjavadevblog.xr.commons.Global;
 import fr.fxjavadevblog.xr.commons.SingleExecutor;
 import fr.fxjavadevblog.xr.commons.displays.Blinker;
+import fr.fxjavadevblog.xr.commons.fonts.FontUtils;
 import fr.fxjavadevblog.xr.commons.fonts.GdxBitmapString;
 import fr.fxjavadevblog.xr.commons.libs.ModAsset;
 import fr.fxjavadevblog.xr.commons.libs.SoundAsset;
@@ -66,7 +68,7 @@ public class GamePlayScreen extends AbstractScreen implements ArtefactsScene
 
 	private void createBlinkingMessage()
 	{
-		GdxBitmapString gameOverMessage = new GdxBitmapString("GAME OVER", 2f);
+		GdxBitmapString gameOverMessage = new GdxBitmapString(FontUtils.FONT_BLUE, "GAME OVER", 2f);
 		gameOverMessage.setPosition((Global.width - gameOverMessage.getWidth()) / 2f, 400);
 		msgBlinker = new Blinker(1f, gameOverMessage, 5, this::closeGame);
 	}
@@ -113,7 +115,7 @@ public class GamePlayScreen extends AbstractScreen implements ArtefactsScene
 		{
 			gameOverSoundExecutor.execute();
 			renderGameOverBlinker(delta, batch);
-			GdxBitmapString yourScore = new GdxBitmapString("SCORE " + ScoreManager.getInstance().getScore());
+			GdxBitmapString yourScore = new GdxBitmapString(FontUtils.FONT_BLUE, "SCORE IS " + ScoreManager.getInstance().getScore());
 			yourScore.setPosition((Global.width - yourScore.getWidth()) / 2f, (float) (Global.height - (double) TextureAsset.TITLE.get().getHeight() / 2) / 2 - 50f);
 			yourScore.render(batch, delta);
 		}

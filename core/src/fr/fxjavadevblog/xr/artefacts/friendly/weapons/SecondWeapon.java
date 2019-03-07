@@ -1,4 +1,4 @@
-package fr.fxjavadevblog.xr.artefacts.friendly;
+package fr.fxjavadevblog.xr.artefacts.friendly.weapons;
 
 import fr.fxjavadevblog.xr.commons.Global;
 

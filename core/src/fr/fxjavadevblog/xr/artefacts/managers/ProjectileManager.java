@@ -7,14 +7,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import fr.fxjavadevblog.xr.artefacts.Artefact;
-import fr.fxjavadevblog.xr.artefacts.friendly.Ship;
-import fr.fxjavadevblog.xr.artefacts.friendly.Shoot;
-import fr.fxjavadevblog.xr.artefacts.friendly.ShootType;
+import fr.fxjavadevblog.xr.artefacts.friendly.ship.Ship;
+import fr.fxjavadevblog.xr.artefacts.friendly.weapons.Shoot;
+import fr.fxjavadevblog.xr.artefacts.friendly.weapons.ShootType;
 import fr.fxjavadevblog.xr.commons.Global;
 import fr.fxjavadevblog.xr.commons.UserControls;
 import fr.fxjavadevblog.xr.commons.UserControls.Control;
 import fr.fxjavadevblog.xr.commons.libs.AnimationAsset;
+import fr.fxjavadevblog.xr.commons.utils.GameControls;
 import fr.fxjavadevblog.xr.commons.utils.RandomUtils;
+import fr.fxjavadevblog.xr.screens.AbstractScreen;
 
 public class ProjectileManager
 {
@@ -43,7 +45,7 @@ public class ProjectileManager
 
 	private static void checkBigFire(Ship ship)
 	{
-		if (ship.getSecondaryWeapon().isReady() && !Gdx.input.isKeyPressed(UserControls.get(Control.CHARGE_WEAPON)))
+		if (ship.getSecondaryWeapon().isReady() && !AbstractScreen.getUserInput().isPressed(GameControls.B))
 		{
 			ship.getSecondaryWeapon().disable();
 			pm.addShoot(ShootType.BIG_FLAMES, ship.getCenterX(), ship.getCenterY());
@@ -52,7 +54,7 @@ public class ProjectileManager
 
 	private static void checkNormalFire(Ship ship)
 	{
-		if (Gdx.input.isKeyJustPressed(UserControls.get(Control.NORMAL_FIRE)))
+		if (AbstractScreen.getUserInput().isPressed(GameControls.A))
 		{
 			pm.addShoot(ShootType.NORMAL_LASER, ship.getCenterX(), ship.getCenterY());
 		}

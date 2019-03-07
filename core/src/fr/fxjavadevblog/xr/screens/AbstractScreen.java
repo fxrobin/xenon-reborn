@@ -6,10 +6,15 @@ import org.apache.commons.logging.LogFactory;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.kennycason.gdx.controller.Controller;
+
+import fr.fxjavadevblog.xr.commons.utils.ControllerFactory;
+import fr.fxjavadevblog.xr.commons.utils.GameControls;
 
 public abstract class AbstractScreen implements Screen
 {
 	private final Log log = LogFactory.getLog(AbstractScreen.class);
+	private static final Controller<GameControls> userInput = ControllerFactory.buildMultiController();
 
 	private final SpriteBatch batch;
 	private XenonControler controler;
@@ -35,6 +40,11 @@ public abstract class AbstractScreen implements Screen
 		return controler.getShapeRenderer();
 	}
 
+	public static Controller<GameControls> getUserInput()
+	{
+		return userInput;
+	}
+	
 	@Override
 	public void hide()
 	{

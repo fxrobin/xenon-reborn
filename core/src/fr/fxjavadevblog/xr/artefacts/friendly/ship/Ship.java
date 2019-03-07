@@ -1,10 +1,12 @@
-package fr.fxjavadevblog.xr.artefacts.friendly;
+package fr.fxjavadevblog.xr.artefacts.friendly.ship;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import fr.fxjavadevblog.xr.artefacts.AbstractArtefact;
 import fr.fxjavadevblog.xr.artefacts.Event;
+import fr.fxjavadevblog.xr.artefacts.friendly.addons.Shield;
+import fr.fxjavadevblog.xr.artefacts.friendly.weapons.SecondWeapon;
 import fr.fxjavadevblog.xr.commons.Global;
 import fr.fxjavadevblog.xr.commons.utils.GdxCommons;
 

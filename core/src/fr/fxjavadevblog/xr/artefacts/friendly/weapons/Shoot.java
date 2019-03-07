@@ -1,4 +1,4 @@
-package fr.fxjavadevblog.xr.artefacts.friendly;
+package fr.fxjavadevblog.xr.artefacts.friendly.weapons;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

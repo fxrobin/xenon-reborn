@@ -1,4 +1,4 @@
-package fr.fxjavadevblog.xr.artefacts.extra;
+package fr.fxjavadevblog.xr.artefacts.collectables;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

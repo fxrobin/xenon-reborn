@@ -1,4 +1,4 @@
-package fr.fxjavadevblog.xr.artefacts.friendly;
+package fr.fxjavadevblog.xr.artefacts.friendly.ship;
 
 public interface ShipInput
 {

@@ -34,7 +34,7 @@ public final class Launcher
 		config.foregroundFPS = 60;
 		config.resizable = false;
 		config.title = "Xenon Reborn - www.fxjavadevblog.fr";
-		config.useGL30 = true;
+		config.useGL30 = false;
 		config.initialBackgroundColor = Color.BLACK;
 		new LwjglApplication(MainControler.getInstance(), config);
 	}

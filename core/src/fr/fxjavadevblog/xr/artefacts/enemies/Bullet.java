@@ -1,7 +1,7 @@
 package fr.fxjavadevblog.xr.artefacts.enemies;
 
-import fr.fxjavadevblog.xr.artefacts.friendly.Ship;
 import fr.fxjavadevblog.xr.artefacts.Artefact;
+import fr.fxjavadevblog.xr.artefacts.friendly.ship.Ship;
 import fr.fxjavadevblog.xr.commons.libs.TextureAsset;
 
 /**

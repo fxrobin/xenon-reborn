@@ -217,5 +217,15 @@ public final class GdxCommons
 		camera.position.set(camera.viewportWidth / 2, camera.viewportHeight / 2, 0);
 		camera.update();
 	}
+	
+	public static float calculateCenteredPositionX(Texture texture)
+	{
+		return (Global.width - texture.getWidth()) / 2f;
+	}
+	
+	public static float calculateCenteredPositionY(Texture texture)
+	{
+		return (Global.height - texture.getHeight()) / 2f;
+	}
 
 }
