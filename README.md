@@ -12,20 +12,20 @@ Here is how the v0.1.8 looks like (Youtube) (just click on the image to launch t
 [![Xenon_Reborn_Capture v0.1.8](http://img.youtube.com/vi/ki39sbk4VKc/0.jpg)](https://youtu.be/ki39sbk4VKc)
 
 What's technicaly inside ?
-- MVC paradigm
-- Screen management and fade-in / fade-out transition (coded from scratch)
-- Central assets management and loading, through enum
-- Smooth random background scrolling on the first screen
-- Object states and polymorphism on every stage of the software design
-- Sprite Collision (coded from scracth based on circles)
-- Music playing an old format (Amiga and Atari-ST Mod format) which is very tiny compared to MP3
-- Parallalax scrolling on the game screen
-- Java 8 lambdas and method references.
-- etc.
+  - MVC paradigm
+  - Screen management and fade-in / fade-out transition (coded from scratch)
+  - Central assets management and loading, through enum
+  - Smooth random background scrolling on the first screen
+  - Object states and polymorphism on every stage of the software design
+  - Sprite Collision (coded from scracth based on circles)
+  - Music playing an old format (Amiga and Atari-ST Mod format) which is very tiny compared to MP3
+  - Parallalax scrolling on the game screen
+  - Java 8 lambdas and method references.
+  - etc.
 
 Code reviews :
-- 0% issues in Codacy.
-- All files rated A in Codefactor.
+  - 0% issues in Codacy.
+  - All files rated A in Codefactor.
 
 Average methods per class : 10 
 Average LoC per class : 4
