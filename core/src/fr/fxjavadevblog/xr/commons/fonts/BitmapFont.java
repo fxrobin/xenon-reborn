@@ -16,28 +16,39 @@ public class BitmapFont
 {
 
 	private Map<Character, TextureRegion> regions = new HashMap<>();
+	private int width;
+	private int height;
 
-	private BitmapFont()
+	private BitmapFont(Texture t, int width, int height, String charMap)
 	{
-		// protection du constructeur.
-	}
-
-	public static BitmapFont build(Texture t, int width, int height, String charMap)
-	{
-
-		BitmapFont bitmapFont = new BitmapFont();
+		this.width = width;
+		this.height = height;
 		int offset = 0;
 		for (char c : charMap.toCharArray())
 		{
 			TextureRegion tr = new TextureRegion(t, offset, 0, width, height);
-			bitmapFont.regions.put(c, tr);
+			this.regions.put(c, tr);
 			offset += width;
 		}
-		return bitmapFont;
+	}
+
+	public static BitmapFont build(Texture t, int width, int height, String charMap)
+	{
+		return new BitmapFont(t, width, height, charMap);
 	}
 
 	public TextureRegion getChar(char c)
 	{
 		return regions.get(c);
+	}
+	
+	public int getWidth()
+	{
+		return width;
+	}
+	
+	public int getHeight()
+	{
+		return height;
 	}
 }

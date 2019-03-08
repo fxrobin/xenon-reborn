@@ -11,7 +11,6 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 import fr.fxjavadevblog.xr.commons.libs.AssetLib;
-import fr.fxjavadevblog.xr.commons.libs.TextureAsset;
 
 public enum FontUtils
 {
@@ -21,9 +20,7 @@ public enum FontUtils
 
 	private final Log log = LogFactory.getLog(FontUtils.class);
 
-	private int fontWidth;
-	private int fontHeight;
-	private String stringMap;
+
 	private BitmapFont bitmapFont;
 
 	private FontUtils(String propertyFile)
@@ -33,9 +30,9 @@ public enum FontUtils
 		{
 			config.load(FontUtils.class.getResourceAsStream(propertyFile));
 			Texture font = AssetLib.getInstance().get(config.getProperty("font-file"), Texture.class);
-			fontWidth = Integer.parseInt(config.getProperty("letter-width"));
-			fontHeight = Integer.parseInt(config.getProperty("letter-height"));
-			stringMap = config.getProperty("string-map");
+			int fontWidth = Integer.parseInt(config.getProperty("letter-width"));
+			int fontHeight = Integer.parseInt(config.getProperty("letter-height"));
+			String stringMap = config.getProperty("string-map");
 			bitmapFont = BitmapFont.build(font, fontWidth, fontHeight, stringMap);
 			
 			log.info("Font loaded : " + propertyFile);
@@ -55,34 +52,34 @@ public enum FontUtils
 
 	public int getWidth(String txt)
 	{
-		return txt.length() * fontWidth;
+		return txt.length() * bitmapFont.getWidth();
 	}
 
 	public int getHeight(String txt) /* NOSONAR */
 	{
-		return fontHeight;
+		return bitmapFont.getHeight();
 	}
 
 	public int getFontWidth()
 	{
-		return fontWidth;
+		return bitmapFont.getWidth();
 	}
 
-	public void print(Batch b, float x, float y, String txt)
+	protected void print(Batch b, float x, float y, String txt)
 	{
 		for (int i = 0; i < txt.length(); i++)
 		{
-			print(b, x + (i * fontWidth), y, txt.charAt(i));
+			print(b, x + (i * bitmapFont.getWidth()), y, txt.charAt(i));
 		}
 	}
 
-	public void print(Batch batch, float positionX, float positionY, char character)
+	protected void print(Batch batch, float positionX, float positionY, char character)
 	{
 		TextureRegion tr = bitmapFont.getChar(character);
 		if (tr != null) batch.draw(tr, positionX, positionY);
 	}
 
-	public TextureRegion getTextureRegionOfChar(char character)
+	protected TextureRegion getTextureRegionOfChar(char character)
 	{
 		return bitmapFont.getChar(character);
 	}

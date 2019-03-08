@@ -16,7 +16,6 @@ import fr.fxjavadevblog.xr.commons.displays.Interpolator;
  */
 public class Bonus extends AbstractArtefact
 {
-	private Interpolator interpolator;
 	private AnimatedSprite animatedSprite;
 	private BonusType type;
 
@@ -26,7 +25,7 @@ public class Bonus extends AbstractArtefact
 		this.type = type;
 		this.animatedSprite = type.createAnimatedSprite();
 		this.animatedSprite.setOriginCenterAtPosition(x, y);
-		this.interpolator = new Interpolator(Interpolation.sine, 2f, 50, x);
+		this.setInterpolatorX(new Interpolator(Interpolation.sine, 2f, 50, x));
 	}
 
 	public BonusType getType()
@@ -37,12 +36,7 @@ public class Bonus extends AbstractArtefact
 	@Override
 	public void render(SpriteBatch batch, float delta)
 	{
-		float originalX = interpolator.getOriginalValue();
-		this.animatedSprite.setCenterX(originalX);
-		this.update(delta);
-		float newPosition = interpolator.calculate(delta);
-		this.animatedSprite.setCenterX(newPosition);
-		this.getBoundingCircle().x = newPosition;
+		super.update(delta);
 		super.render(batch, delta);
 		animatedSprite.render(batch, delta);
 	}

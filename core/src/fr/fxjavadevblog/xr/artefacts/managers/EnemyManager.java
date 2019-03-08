@@ -3,6 +3,7 @@ package fr.fxjavadevblog.xr.artefacts.managers;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -31,11 +32,11 @@ public class EnemyManager implements Renderable
 		if (deltaTimeAccumulator.addAndCheck(delta))
 		{
 			/* on génère 4 enemis toutes les 4 secondes */
-			for (int i = 0; i < 3; i++)
-			{
+			/* boucle for avec streaming API */
+			IntStream.range(0, 3).forEach(i -> {
 				Enemy e = EnemyType.random();
 				enemies.add(e);
-			}
+			});
 
 			/* et on génère une escadrille de 3 méchants */
 			this.generateEnemySquadron(3);

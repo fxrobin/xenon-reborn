@@ -2,6 +2,7 @@ package fr.fxjavadevblog.xr.artefacts;
 
 import java.util.Observable;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -9,6 +10,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Circle;
 
 import fr.fxjavadevblog.xr.commons.Global;
+import fr.fxjavadevblog.xr.commons.displays.Interpolator;
 import fr.fxjavadevblog.xr.commons.utils.GdxCommons;
 
 /**
@@ -31,9 +33,18 @@ public abstract class AbstractArtefact extends Observable implements Artefact
 	 * 
 	 */
 	private Circle boundingCircle;
-	
-	private static ShapeRenderer renderer= new ShapeRenderer();
-	
+
+	/**
+	 * renderer pour l'affichage des boundingCircles (debug / demo)
+	 */
+	private static ShapeRenderer renderer = new ShapeRenderer();
+
+	/**
+	 * interpolator pour calculer la trajectoire de l'artefact.
+	 */
+	private Interpolator interpolatorX;
+	private Interpolator interpolatorY;
+
 	static
 	{
 		renderer.setColor(Color.RED);
@@ -61,7 +72,7 @@ public abstract class AbstractArtefact extends Observable implements Artefact
 	 * déplace le sprite associé sur l'axe des X.
 	 * 
 	 * @param deltaX
-	 *          décallage à appliquer.
+	 *            décallage à appliquer.
 	 */
 	private void translateX(final float deltaX)
 	{
@@ -72,7 +83,7 @@ public abstract class AbstractArtefact extends Observable implements Artefact
 	 * déplace le sprite associé sur l'axe des Y.
 	 * 
 	 * @param deltaY
-	 *          décallage à appliquer.
+	 *            décallage à appliquer.
 	 */
 	private void translateY(final float deltaY)
 	{
@@ -82,9 +93,43 @@ public abstract class AbstractArtefact extends Observable implements Artefact
 	@Override
 	public void update(float delta)
 	{
-		this.translateX(delta * data.getVectorX());
-		this.translateY(delta * data.getVectorY());
+		updateX(delta);
+		updateY(delta);
 		GdxCommons.computeBoundingCircle(getSprite(), getBoundingCircle());
+	}
+
+	private void updateY(float delta)
+	{
+		if (interpolatorY != null)
+		{
+			float originalY = interpolatorY.getOriginalValue();
+			this.getSprite().setCenterX(originalY);
+		}
+
+		this.translateY(delta * data.getVectorY());
+
+		if (interpolatorY != null)
+		{
+			float newPositionY = interpolatorX.calculate(delta);
+			this.getSprite().setCenterX(newPositionY);
+		}
+	}
+
+	private void updateX(float delta)
+	{
+		if (interpolatorX != null)
+		{
+			float originalX = interpolatorX.getOriginalValue();
+			this.getSprite().setCenterX(originalX);
+		}
+
+		this.translateX(delta * data.getVectorX());
+
+		if (interpolatorX != null)
+		{
+			float newPositionX = interpolatorX.calculate(delta);
+			this.getSprite().setCenterX(newPositionX);
+		}
 	}
 
 	/**
@@ -182,20 +227,31 @@ public abstract class AbstractArtefact extends Observable implements Artefact
 	{
 		return this.getBoundingCircle().overlaps(otherArtefact.getBoundingCircle());
 	}
-	
+
 	@Override
 	public void render(SpriteBatch batch, float delta)
-	{	
+	{
 		if (Global.isDisplayBoundingCircles())
 		{
 			// le spriteBatch en cours doit être d'abord désactivé.
 			batch.end();
+			Gdx.gl.glLineWidth(3);
 			renderer.begin(ShapeType.Line);
+			renderer.setProjectionMatrix(batch.getProjectionMatrix());
 			renderer.circle(this.boundingCircle.x, this.boundingCircle.y, this.boundingCircle.radius);
-			renderer.end();			
+			renderer.end();
 			batch.begin();
 		}
 	}
-	
+
+	public void setInterpolatorX(Interpolator interpolatorX)
+	{
+		this.interpolatorX = interpolatorX;
+	}
+
+	public void setInterpolatorY(Interpolator interpolatorY)
+	{
+		this.interpolatorY = interpolatorY;
+	}
 
 }

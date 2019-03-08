@@ -1,5 +1,7 @@
 package fr.fxjavadevblog.xr.commons.libs;
 
+import java.util.Arrays;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -12,6 +14,8 @@ public final class AssetLib
 {
 	// SINGLETON
 	private static AssetLib assetLib = new AssetLib();
+	
+	
 
 	public static AssetLib getInstance()
 	{
@@ -28,9 +32,9 @@ public final class AssetLib
 	 */
 	private Log log = LogFactory.getLog(this.getClass());
 
-	public AssetLib()
+	private AssetLib()
 	{
-		// on force d'emblée la lecture bloquante du son d'intro.
+		// on force d'emblée la lecture bloquante du logo d'intro
 		loadAndWait(Texture.class, TextureAsset.BACKGROUND_BOMBING_PIXELS);
 		loadAllAsync();
 	}
@@ -46,26 +50,38 @@ public final class AssetLib
 		register(Texture.class, (Object[]) AnimationAsset.values());
 	}
 
-	public void register(Class<?> clazz, Object... assets)
-	{
-		for (Object asset : assets)
-		{
-			String fullFileName = asset.toString();
-			if (!manager.isLoaded(fullFileName))
-			{
-				manager.load(fullFileName, clazz);
-				log.info("Loading : " + fullFileName);
-			}
-			else
-			{
-				log.info("Already loaded : " + fullFileName);
-			}
-		}
+	/**
+	 * registers all the assets that have not been loaded yet.
+	 * 
+	 * @param clazz
+	 * 		type of the assets
+	 * @param assets
+	 * 		assets array
+	 */
+	private void register(Class<?> clazz, Object... assets)
+	{	
+		Arrays.stream(assets)
+		      .map(Object::toString)
+		      .filter(this::isNotLoaded)
+		      .forEach(fullFileName -> 
+				       {
+				    	manager.load(fullFileName, clazz);
+				      	log.info("Loading : " + fullFileName);
+				       });
 	}
-
-	public AssetManager getManager()
+	
+	/**
+	 * convenient method to negate the predicate if an asset has been already running.
+	 * Used in the method reference filter in "register".
+	 * 
+	 * @param fullFileName
+	 * 		resource full path	
+	 * @return 
+	 * 		true if the ressource has not been loaded yet
+	 */
+	private boolean isNotLoaded(String fullFileName)
 	{
-		return manager;
+		return !manager.isLoaded(fullFileName);
 	}
 
 	public boolean isFullyLoaded()
@@ -91,6 +107,7 @@ public final class AssetLib
 
 	public void disposeAll()
 	{
+		log.info("DisposeAll");
 		manager.clear();
 	}
 }

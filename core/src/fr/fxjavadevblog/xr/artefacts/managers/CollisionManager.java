@@ -29,8 +29,8 @@ public final class CollisionManager
 	}
 
 	/**
-	 * vérifie les collisions entre une liste de cibles (targets), et une liste de
-	 * projectiles (projectiles).
+	 * vérifie les collisions entre une liste de cibles (targets), et une liste
+	 * de projectiles (projectiles).
 	 * 
 	 * @param targets
 	 * @param projectiles
@@ -39,13 +39,7 @@ public final class CollisionManager
 	{
 		// on vérifie la collision de tous les "targets" avec chacun des
 		// "projectiles".
-		for (Artefact t : targets)
-		{
-			for (Artefact p : projectiles)
-			{
-				checkCollision(t, p);
-			}
-		}
+		targets.forEach(t -> projectiles.forEach(p -> checkCollision(t, p)));
 	}
 
 	/**
@@ -67,8 +61,8 @@ public final class CollisionManager
 	}
 
 	/**
-	 * décrémente la vie de deux artefacts en fonction des forces d'impact de leur
-	 * opposant respectif.
+	 * décrémente la vie de deux artefacts en fonction des forces d'impact de
+	 * leur opposant respectif.
 	 * 
 	 * @param target
 	 * @param projectile
@@ -105,11 +99,14 @@ public final class CollisionManager
 	 */
 	public void processBonus(Artefact target)
 	{
-		/* une destruction sur deux génère un bonus et les bullets sont ignorées */
+		/*
+		 * une destruction sur deux génère un bonus et les bullets sont ignorées
+		 */
 		if (randomGenerator.nextBoolean() && !(target instanceof Bullet))
 		{
 			/*
-			 * puis on choisi au hasard, encore l'un ou l'autres des bonus potentiels.
+			 * puis on choisi au hasard, encore l'un ou l'autres des bonus
+			 * potentiels.
 			 */
 			BonusType bonusType = randomGenerator.nextBoolean() ? BonusType.NORMAL_BONUS : BonusType.POWER_UP_BONUS;
 			BonusManager.getInstance().addBonus(bonusType, target.getBoundingCircle().x, target.getBoundingCircle().y);

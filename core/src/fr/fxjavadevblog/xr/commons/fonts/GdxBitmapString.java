@@ -1,8 +1,5 @@
 package fr.fxjavadevblog.xr.commons.fonts;
 
-import java.util.Arrays;
-import java.util.Objects;
-
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -21,7 +18,7 @@ public class GdxBitmapString extends Displayable
 	private int letterWidth;
 
 	private float scale;
-	
+
 	private FontUtils font;
 
 	public GdxBitmapString(FontUtils font, String text, float scale)
@@ -40,7 +37,8 @@ public class GdxBitmapString extends Displayable
 	}
 
 	/*
-	 * initialisation du tableau de sprites en fonction du TextureRegion calculés
+	 * initialisation du tableau de sprites en fonction du TextureRegion
+	 * calculés
 	 */
 	private void populateSprites(String text)
 	{
@@ -84,21 +82,22 @@ public class GdxBitmapString extends Displayable
 			}
 			offsetX += letterWidth * scale;
 		}
-		
+
 	}
 
 	@Override
 	public void render(SpriteBatch batch, float delta)
 	{
-		// Arrays.stream(sprites).filter(Objects::nonNull).forEach(s -> s.draw(batch));
-		
-		for(Sprite s : sprites)
+		// Arrays.stream(sprites).filter(Objects::nonNull).forEach(s ->
+		// s.draw(batch));
+
+		for (Sprite s : sprites)
 		{
-			if (s!=null)
+			if (s != null)
 			{
 				s.draw(batch);
 			}
 		}
-		
+
 	}
 }

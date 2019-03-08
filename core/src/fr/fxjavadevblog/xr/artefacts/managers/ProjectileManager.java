@@ -3,7 +3,6 @@ package fr.fxjavadevblog.xr.artefacts.managers;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import fr.fxjavadevblog.xr.artefacts.Artefact;
@@ -11,8 +10,6 @@ import fr.fxjavadevblog.xr.artefacts.friendly.ship.Ship;
 import fr.fxjavadevblog.xr.artefacts.friendly.weapons.Shoot;
 import fr.fxjavadevblog.xr.artefacts.friendly.weapons.ShootType;
 import fr.fxjavadevblog.xr.commons.Global;
-import fr.fxjavadevblog.xr.commons.UserControls;
-import fr.fxjavadevblog.xr.commons.UserControls.Control;
 import fr.fxjavadevblog.xr.commons.libs.AnimationAsset;
 import fr.fxjavadevblog.xr.commons.utils.GameControls;
 import fr.fxjavadevblog.xr.commons.utils.RandomUtils;

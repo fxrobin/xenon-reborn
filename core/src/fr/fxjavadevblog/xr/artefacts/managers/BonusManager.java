@@ -53,12 +53,9 @@ public class BonusManager
 	 */
 	public void checkBonus(Ship ship)
 	{
-		for (Bonus bonus : bonuses)
+		if (!bonuses.isEmpty())
 		{
-			if (bonus.isCollision(ship))
-			{
-				processBonus(ship, bonus);
-			}
+			bonuses.stream().filter(b -> b.isCollision(ship)).forEach(b -> processBonus(ship, b));
 		}
 	}
 
@@ -78,7 +75,7 @@ public class BonusManager
 				ScoreManager.getInstance().add(100);
 				break;
 			case POWER_UP_BONUS:
-				ship.increaseLife(10); 
+				ship.increaseLife(10);
 				break;
 			default:
 		}

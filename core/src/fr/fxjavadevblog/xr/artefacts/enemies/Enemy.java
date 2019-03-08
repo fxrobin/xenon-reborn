@@ -4,13 +4,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import fr.fxjavadevblog.xr.artefacts.managers.EnemyManager;
 import fr.fxjavadevblog.xr.artefacts.AbstractArtefact;
+import fr.fxjavadevblog.xr.artefacts.managers.EnemyManager;
 import fr.fxjavadevblog.xr.commons.utils.DeltaTimeAccumulator;
 import fr.fxjavadevblog.xr.commons.utils.RandomUtils;
 
 /**
- * réprésente un ennemie.
+ * réprésente un ennemi.
  * 
  * @author robin
  *
@@ -18,7 +18,14 @@ import fr.fxjavadevblog.xr.commons.utils.RandomUtils;
 
 public class Enemy extends AbstractArtefact
 {
+	/**
+	 * accumulateur pour générer des "bullets" sur un interval de temps déterminé à la création de l'ennemi.
+	 */
 	private DeltaTimeAccumulator accumulator;
+	
+	/**
+	 * sprite qui représente l'ennemi (pas d'anim) en l'état.
+	 */
 	private Sprite sprite;
 
 	public Enemy(Enemy other)

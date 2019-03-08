@@ -105,7 +105,7 @@ public class GamePlayScreen extends AbstractScreen implements ArtefactsScene
 		batch.end();
 
 		/* le dashboard doit s'afficher en dehors du spritebatch précédent */
-		dashBoard.render();
+		dashBoard.render(delta);
 
 	}
 

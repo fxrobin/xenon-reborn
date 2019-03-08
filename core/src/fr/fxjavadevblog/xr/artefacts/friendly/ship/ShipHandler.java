@@ -1,12 +1,10 @@
 package fr.fxjavadevblog.xr.artefacts.friendly.ship;
 
-import com.badlogic.gdx.Gdx;
-
 import fr.fxjavadevblog.xr.commons.Global;
 import fr.fxjavadevblog.xr.commons.UserControls;
 import fr.fxjavadevblog.xr.commons.UserControls.Control;
-import fr.fxjavadevblog.xr.commons.utils.GdxCommons;
 import fr.fxjavadevblog.xr.commons.utils.GameControls;
+import fr.fxjavadevblog.xr.commons.utils.GdxCommons;
 import fr.fxjavadevblog.xr.screens.AbstractScreen;
 
 /**

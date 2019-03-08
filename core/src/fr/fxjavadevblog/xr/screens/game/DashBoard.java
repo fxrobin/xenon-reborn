@@ -1,5 +1,7 @@
 package fr.fxjavadevblog.xr.screens.game;
 
+import java.util.stream.IntStream;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -12,7 +14,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import fr.fxjavadevblog.xr.artefacts.friendly.ship.Ship;
 import fr.fxjavadevblog.xr.artefacts.managers.ScoreManager;
 import fr.fxjavadevblog.xr.commons.Global;
-import fr.fxjavadevblog.xr.commons.fonts.FontUtils;
+import fr.fxjavadevblog.xr.commons.fonts.GdxBitmapString;
 import fr.fxjavadevblog.xr.commons.fonts.TrueTypeFont;
 import fr.fxjavadevblog.xr.commons.libs.TextureAsset;
 
@@ -26,7 +28,7 @@ import fr.fxjavadevblog.xr.commons.libs.TextureAsset;
 
 public class DashBoard
 {
-	private static final String FMT_MSG_BAR = "XENON Reborn // FPS : %d // lifePoints : %d // Shield : %02.2f %% // lifeCount : %d";
+	private static final String FMT_MSG_BAR = "XenonReborn // FPS : %d // lifePoints : %d // Shield : %02.2f %% // lifeCount : %d";
 	private static final int PADDING = 10;
 	private static final int MARGE = 10;
 	private int hauteurBarre;
@@ -44,13 +46,13 @@ public class DashBoard
 		this.hauteurBarre = (Global.height - footer.getHeight() - (MARGE * 2) - 60);
 	}
 
-	public void render()
+	public void render(float delta)
 	{
 
 		this.renderShieldBar();
 		this.renderSecondWeaponBar();
 		this.gamePlayScreen.getBatch().begin();
-		this.renderScore();
+		this.renderScore(delta);
 		this.renderStatusBar();
 		this.renderLifeCount();
 		this.gamePlayScreen.getBatch().end();
@@ -98,23 +100,25 @@ public class DashBoard
 		return new Color(1f - currentValue, currentValue, 0f, 0.5f);
 	}
 
-	private void renderScore()
+	private void renderScore(float delta)
 	{
 		SpriteBatch batch = gamePlayScreen.getBatch();
-		FontUtils.FONT_BLUE.print(batch, 5, Global.height - 43f, String.format("%06d", ScoreManager.getInstance().getScore()));
+		GdxBitmapString bitmapString = ScoreManager.getInstance().getScoreBitmapString();
+		bitmapString.setPosition(5, Global.height - 43f);
+		bitmapString.render(batch, delta);
 	}
 
 	private void renderLifeCount()
 	{
 		SpriteBatch batch = gamePlayScreen.getBatch();
 		Texture life = TextureAsset.LIFE.get();
-
-		int offset = Global.width - (gamePlayScreen.getShip().getLifeCount() * (life.getWidth() + PADDING));
-
-		for (int i = 0; i < gamePlayScreen.getShip().getLifeCount(); i++)
-		{
-			batch.draw(TextureAsset.LIFE.get(), (float) offset + (i * (life.getWidth() + PADDING)), (float) Global.height - (life.getHeight() + PADDING));
-		}
+		int offset = Global.width - (gamePlayScreen.getShip().getLifeCount() * (life.getWidth() + PADDING));		
+		
+		// une boucle for avec la streaming API.
+		IntStream.range(0, gamePlayScreen.getShip().getLifeCount())
+		         .forEach(i -> batch.draw(TextureAsset.LIFE.get(), 
+		        		                  (float) offset + (i * (life.getWidth() + PADDING)), 
+		        		                  (float) Global.height - (life.getHeight() + PADDING)));
 	}
 
 	private void renderStatusBar()

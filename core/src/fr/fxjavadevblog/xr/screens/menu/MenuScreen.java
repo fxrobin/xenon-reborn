@@ -19,6 +19,7 @@ import fr.fxjavadevblog.xr.commons.fonts.GdxBitmapString;
 import fr.fxjavadevblog.xr.commons.fonts.GdxTrueTypeString;
 import fr.fxjavadevblog.xr.commons.fonts.TrueTypeFont;
 import fr.fxjavadevblog.xr.commons.libs.AnimationAsset;
+import fr.fxjavadevblog.xr.commons.libs.AssetLib;
 import fr.fxjavadevblog.xr.commons.libs.ModAsset;
 import fr.fxjavadevblog.xr.commons.libs.MusicAsset;
 import fr.fxjavadevblog.xr.commons.libs.SoundAsset;
@@ -169,11 +170,7 @@ public class MenuScreen extends AbstractScreen
 
 		if (Gdx.input.isKeyJustPressed(Keys.ESCAPE))
 		{
-			log.info("DisposeAll");
-			AnimationAsset.disposeAll();
-			MusicAsset.disposeAll();
-			SoundAsset.disposeAll();
-			TextureAsset.disposeAll();
+			AssetLib.getInstance().disposeAll();
 			Gdx.app.exit();
 		}
 	}
