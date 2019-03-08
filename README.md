@@ -31,4 +31,4 @@ Here is how the v0.1.8 looks like (Youtube) (just click on the image to launch t
 - Average methods per class : 10 
 - Average LoC per class : 4
 - Lines of code : 3813
-Nb of classes : 66 (only)
+- Nb of classes : 66 (only)
