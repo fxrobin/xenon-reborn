@@ -12,7 +12,7 @@ import fr.fxjavadevblog.xr.screens.MainControler;
  * singleton (instance unique) de MainControler est obtenue et devient le point
  * d'entrée du jeu vidéo.
  * 
- * @author CDT RBN
+ * @author robin
  *
  */
 
