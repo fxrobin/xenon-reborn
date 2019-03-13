@@ -43,7 +43,7 @@ public class DashBoard
 		super();
 		this.gamePlayScreen = gamePlayScreen;
 		this.footer = TextureAsset.FOOTER.get();
-		this.hauteurBarre = (Global.height - footer.getHeight() - (MARGE * 2) - 60);
+		this.hauteurBarre = (Global.SCREEN_HEIGHT - footer.getHeight() - (MARGE * 2) - 60);
 	}
 
 	public void render(float delta)
@@ -65,7 +65,7 @@ public class DashBoard
 		shapeRenderer.begin(ShapeType.Filled);
 		shapeRenderer.setColor(weaponColor);
 		float currentSize = gamePlayScreen.getShip().getSecondWeaponEnergy() * hauteurBarre / 100f;
-		shapeRenderer.rect(Global.width - 50f - MARGE, (float) footer.getHeight() + (float) MARGE, 50, currentSize);
+		shapeRenderer.rect(Global.SCREEN_WIDTH - 50f - MARGE, (float) footer.getHeight() + (float) MARGE, 50, currentSize);
 		shapeRenderer.end();
 	}
 
@@ -104,7 +104,7 @@ public class DashBoard
 	{
 		SpriteBatch batch = gamePlayScreen.getBatch();
 		GdxBitmapString bitmapString = ScoreManager.getInstance().getScoreBitmapString();
-		bitmapString.setPosition(5, Global.height - 43f);
+		bitmapString.setPosition(5, Global.SCREEN_HEIGHT - 43f);
 		bitmapString.render(batch, delta);
 	}
 
@@ -112,20 +112,20 @@ public class DashBoard
 	{
 		SpriteBatch batch = gamePlayScreen.getBatch();
 		Texture life = TextureAsset.LIFE.get();
-		int offset = Global.width - (gamePlayScreen.getShip().getLifeCount() * (life.getWidth() + PADDING));		
+		int offset = Global.SCREEN_WIDTH - (gamePlayScreen.getShip().getLifeCount() * (life.getWidth() + PADDING));		
 		
 		// une boucle for avec la streaming API.
 		IntStream.range(0, gamePlayScreen.getShip().getLifeCount())
 		         .forEach(i -> batch.draw(TextureAsset.LIFE.get(), 
 		        		                  (float) offset + (i * (life.getWidth() + PADDING)), 
-		        		                  (float) Global.height - (life.getHeight() + PADDING)));
+		        		                  (float) Global.SCREEN_HEIGHT - (life.getHeight() + PADDING)));
 	}
 
 	private void renderStatusBar()
 	{
 		SpriteBatch batch = gamePlayScreen.getBatch();
 		int fps = Gdx.graphics.getFramesPerSecond();
-		batch.draw(footer, 0, 0, Global.width, footer.getHeight());
+		batch.draw(footer, 0, 0, Global.SCREEN_WIDTH, footer.getHeight());
 		Ship ship = gamePlayScreen.getShip();
 		String titleBar = String.format(FMT_MSG_BAR, fps, ship.getLifePoints(), ship.getShieldEnergy(), ship.getLifeCount());
 		font.draw(batch, titleBar, 6, 6 + font.getCapHeight());

@@ -9,7 +9,7 @@ package fr.fxjavadevblog.xr.commons;
  */
 
 public final class Global
-{
+{	
 	/**
 	 * durée du fade-in/fade-out.
 	 */
@@ -18,12 +18,12 @@ public final class Global
 	/**
 	 * largeur de la surface de jeu en pixels.
 	 */
-	public static int width = 1024; /* NOSONAR */
+	public static final int SCREEN_WIDTH = 1024; /* NOSONAR */
 
 	/**
 	 * hauteur de la surface de jeu en pixels.
 	 */
-	public static int height = 768; /* NOSONAR */
+	public static final int SCREEN_HEIGHT = 768; /* NOSONAR */
 
 	/**
 	 * vitesse max de déplacement du vaisseau.

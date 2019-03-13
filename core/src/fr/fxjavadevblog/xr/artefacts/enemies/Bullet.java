@@ -14,9 +14,13 @@ import fr.fxjavadevblog.xr.commons.libs.TextureAsset;
  */
 public class Bullet extends Enemy
 {
+	private static final int RADIUS = 8;
+	private static final int IMPACT_FORCE = 5;
+	private static final int FORCE = 5;
+
 	public Bullet()
 	{
-		super(TextureAsset.BULLET.get(), 5, 5, 8);
+		super(TextureAsset.BULLET.get(), FORCE, IMPACT_FORCE, RADIUS);
 	}
 
 	/*

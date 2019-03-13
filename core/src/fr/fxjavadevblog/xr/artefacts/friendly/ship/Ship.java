@@ -120,8 +120,8 @@ public class Ship extends AbstractArtefact
 		Sprite currentSprite = shipRenderer.getCurrentSprite();
 		if (currentSprite.getX() < 0) currentSprite.setX(0);
 		if (currentSprite.getY() < 80) currentSprite.setY(80);
-		if (currentSprite.getX() > Global.width - currentSprite.getWidth()) currentSprite.setX(Global.width - currentSprite.getWidth());
-		if (currentSprite.getY() > Global.height - currentSprite.getHeight()) currentSprite.setY(Global.height - currentSprite.getHeight());
+		if (currentSprite.getX() > Global.SCREEN_WIDTH - currentSprite.getWidth()) currentSprite.setX(Global.SCREEN_WIDTH - currentSprite.getWidth());
+		if (currentSprite.getY() > Global.SCREEN_HEIGHT - currentSprite.getHeight()) currentSprite.setY(Global.SCREEN_HEIGHT - currentSprite.getHeight());
 		GdxCommons.computeBoundingCircle(currentSprite, getBoundingCircle());
 	}
 

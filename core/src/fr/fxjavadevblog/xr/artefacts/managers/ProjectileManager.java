@@ -63,7 +63,7 @@ public class ProjectileManager
 			s.render(batch, delta);
 			if (!s.isAlive()) ExplosionManager.addExplosion(s, AnimationAsset.EXPLOSION_LITTLE);
 		});
-		shoots.removeIf(s -> (s.getSprite().getY() > Global.height || !s.isAlive()));
+		shoots.removeIf(s -> (s.getSprite().getY() > Global.SCREEN_HEIGHT || !s.isAlive()));
 	}
 
 	public void addShoot(ShootType shootType, float centerX, float centerY)

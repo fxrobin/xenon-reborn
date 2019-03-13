@@ -29,8 +29,8 @@ public class TiledMapScrolling
 		TiledMap tiledMap = new TmxMapLoader().load("maps/map.tmx");
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap, batch);
 
-		cam = new OrthographicCamera(Global.width, Global.height);
-		cam.position.set(Global.width / 2f - 112f, Global.height / 2f, 0);
+		cam = new OrthographicCamera(Global.SCREEN_WIDTH, Global.SCREEN_HEIGHT);
+		cam.position.set(Global.SCREEN_WIDTH / 2f - 112f, Global.SCREEN_HEIGHT / 2f, 0);
 		batch.setProjectionMatrix(cam.combined);
 	}
 

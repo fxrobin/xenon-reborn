@@ -64,8 +64,8 @@ public enum EnemyType
 	private static void randomCoords(Enemy e)
 	{
 		e.setOriginCenter();
-		e.setX((float) Math.random() * Global.width);
-		e.setY((float) Math.random() * 100 + Global.height);
+		e.setX((float) Math.random() * Global.SCREEN_WIDTH);
+		e.setY((float) Math.random() * 100 + Global.SCREEN_HEIGHT);
 		e.setVectorX((float) Math.random() * 200f - 100);
 		e.setVectorY(-((float) Math.random() * 500f + 100f));
 	}

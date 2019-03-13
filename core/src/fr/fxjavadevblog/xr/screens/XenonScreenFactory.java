@@ -7,7 +7,7 @@ import fr.fxjavadevblog.xr.screens.loading.LoadingScreen;
 import fr.fxjavadevblog.xr.screens.menu.MenuScreen;
 
 /**
- * Ancienne factory d'ecran, non fondée sur les enums. (pour la démo TNT19)
+ * Ancienne factory d'ecran, non fondée sur les enums. (pour la démo)
  * 
  * @author robin
  *

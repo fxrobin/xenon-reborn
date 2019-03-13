@@ -26,8 +26,8 @@ public final class Launcher
 	public static void main(final String... arg)
 	{
 		final LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width = Global.width;
-		config.height = Global.height;
+		config.width = Global.SCREEN_WIDTH;
+		config.height = Global.SCREEN_HEIGHT;
 		config.forceExit = false;
 		config.vSyncEnabled = true;
 		config.fullscreen = false;

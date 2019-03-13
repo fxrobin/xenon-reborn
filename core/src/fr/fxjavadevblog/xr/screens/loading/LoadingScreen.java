@@ -88,7 +88,7 @@ public class LoadingScreen extends AbstractScreen
 		shapeRenderer.setColor(Color.RED);
 		shapeRenderer.rect(10, 10, 50, modPlayer.getLeftLevel());
 		shapeRenderer.setColor(Color.GREEN);
-		shapeRenderer.rect(Global.width - 50f - 10, 10, 50, modPlayer.getRightLevel());
+		shapeRenderer.rect(Global.SCREEN_WIDTH - 50f - 10, 10, 50, modPlayer.getRightLevel());
 		shapeRenderer.end();
 	}
 
@@ -96,14 +96,14 @@ public class LoadingScreen extends AbstractScreen
 	{
 		String message = assetLib.isFullyLoaded() ? MSG_LOADED : String.format("LOADING ... %02d %%", assetLib.getProgress());
 		layout.setText(font, message);
-		font.draw(this.getBatch(), message, (Global.width - layout.width) / 2, 80);
+		font.draw(this.getBatch(), message, (Global.SCREEN_WIDTH - layout.width) / 2, 80);
 	}
 
 	private void renderBackground(float delta)
 	{
 		float positionX = interpolatorX.calculate(delta);
 		float positionY = interpolatorY.calculate(delta);
-		this.getBatch().draw(logo, positionX, positionY, Global.width, Global.height);
+		this.getBatch().draw(logo, positionX, positionY, Global.SCREEN_WIDTH, Global.SCREEN_HEIGHT);
 	}
 
 	private void checkInput()

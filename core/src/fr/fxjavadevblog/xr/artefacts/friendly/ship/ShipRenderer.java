@@ -39,7 +39,7 @@ public class ShipRenderer implements Renderable
 		GdxCommons.setOriginCenter(shipSpriteLeft, shipSpriteRight, shipSpriteReactorOff, shipSpriteReactorOn);
 		GdxCommons.setOriginCenter(shieldSprite);
 		currentSprite = shipSpriteReactorOn;
-		currentSprite.setCenter(Global.width / 2f, 80);
+		currentSprite.setCenter(Global.SCREEN_WIDTH / 2f, 80);
 		renderableAdapter.setSprite(currentSprite);
 		blinker = new Blinker(0.125f, renderableAdapter, 6f);
 	}

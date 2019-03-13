@@ -46,7 +46,7 @@ public class BackgroundTravelling
 	 */
 	public void drawBackGround(SpriteBatch batch)
 	{
-		batch.draw(spaceTexture, 0f, 0f, (int) pX, (int) pY, Global.width, Global.height);
+		batch.draw(spaceTexture, 0f, 0f, (int) pX, (int) pY, Global.SCREEN_WIDTH, Global.SCREEN_HEIGHT);
 	}
 
 	/**

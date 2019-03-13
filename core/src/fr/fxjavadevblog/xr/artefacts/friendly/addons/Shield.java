@@ -6,8 +6,8 @@ import fr.fxjavadevblog.xr.commons.libs.SoundAsset;
 /**
  * <p>
  * représente bouclier et son énergie. L'energie va de 100f : chargé au max, 0f
- * déchargé. En dessous de 90f il n'est pas activable A 0.f il se désactive
- * automatiquement.
+ * déchargé. En dessous de 90f il n'est pas activable. Lorsqu'il atteint 0.f il
+ * se désactive automatiquement.
  * </p>
  * 
  * <p>

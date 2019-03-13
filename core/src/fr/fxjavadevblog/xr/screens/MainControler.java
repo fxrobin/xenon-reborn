@@ -62,13 +62,16 @@ public final class MainControler extends Game implements XenonControler
 		this.fader = Fader.getInstance();
 		this.shapeRenderer = new ShapeRenderer();
 		this.camera = new OrthographicCamera();
-		this.viewPort = new FitViewport(Global.width, Global.height, camera);
+		this.viewPort = new FitViewport(Global.SCREEN_WIDTH, Global.SCREEN_HEIGHT, camera);
 		this.viewPort.apply();
 		GdxCommons.adaptCameraToViewPort(camera);
 		
-		Screen firstScreen = XenonScreenFactory.createScreen(XenonScreenFactory.LOADING_SCREEN, this);
-		this.setScreen(firstScreen);
+		/* Portion de code pour montrer comment utilser l'ancienne factory
+		Screen firstScreen = XenonScreenFactory.createScreen(XenonScreenFactory.LOADING_SCREEN, this); // NOSONAR
+		this.setScreen(firstScreen); // NOSONAR
+		*/
 		
+		// usage de la nouvelle factory, fondée sur les enum.
 		this.setScreen(XenonScreen.LOADING.createScreen(this));
 	}
 

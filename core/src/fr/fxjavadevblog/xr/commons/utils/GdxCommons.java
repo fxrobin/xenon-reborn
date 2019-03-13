@@ -1,6 +1,7 @@
 package fr.fxjavadevblog.xr.commons.utils;
 
 import java.util.Arrays;
+import java.util.function.Consumer;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -13,6 +14,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
@@ -111,7 +113,7 @@ public final class GdxCommons
 	public static TextureRegion[] convertToTextureArray(Texture texture, int cols, int rows)
 	{
 		int totalFrames = cols * rows;
-		Rectangle cropStart = new Rectangle(0, 0, texture.getWidth() / cols, texture.getHeight() / rows);
+		Rectangle cropStart = new Rectangle(0, 0, (float) texture.getWidth() / cols, (float)  texture.getHeight() / rows);
 		return convertToTextureArray(texture, totalFrames, cols, rows, cropStart);
 	}
 
@@ -187,7 +189,7 @@ public final class GdxCommons
 		}
 		else
 		{
-			if (!Gdx.graphics.setWindowedMode(Global.width, Global.height))
+			if (!Gdx.graphics.setWindowedMode(Global.SCREEN_WIDTH, Global.SCREEN_HEIGHT))
 			{
 				System.err.println("Erreur de passage mode fenêtré"); // NOSONAR
 			}
@@ -220,12 +222,35 @@ public final class GdxCommons
 	
 	public static float calculateCenteredPositionX(Texture texture)
 	{
-		return (Global.width - texture.getWidth()) / 2f;
+		return (Global.SCREEN_WIDTH - texture.getWidth()) / 2f;
 	}
 	
 	public static float calculateCenteredPositionY(Texture texture)
 	{
-		return (Global.height - texture.getHeight()) / 2f;
+		return (Global.SCREEN_HEIGHT - texture.getHeight()) / 2f;
+	}
+	
+	/**
+	 * execute l'action du Consumer dans une transaction OpenGL (SpriteBatch.begin() et end()).
+	 * Si le SpriteBatch n'est pas ouvert, il le devient, puis il sera renfermé.
+	 * 
+	 * @param batch
+	 * @param action
+	 */
+	public static void spriteBatchTransaction(SpriteBatch batch, Consumer<SpriteBatch> action)
+	{
+		boolean isDrawing = batch.isDrawing();
+		if (!isDrawing)
+		{
+			batch.begin();
+		}
+		
+		action.accept(batch);
+		
+		if (!isDrawing)
+		{
+			batch.end();
+		}
 	}
 
 }

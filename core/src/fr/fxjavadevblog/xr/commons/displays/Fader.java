@@ -100,7 +100,7 @@ public final class Fader
 			Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 			fadeRenderer.begin(ShapeType.Filled);
 			fadeRenderer.setColor(0, 0, 0, currentAlpha);
-			fadeRenderer.rect(0, 0, Global.width, Global.height);
+			fadeRenderer.rect(0, 0, Global.SCREEN_WIDTH, Global.SCREEN_HEIGHT);
 			fadeRenderer.end();
 		}
 	}

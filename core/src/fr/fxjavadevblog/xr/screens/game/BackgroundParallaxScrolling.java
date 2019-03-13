@@ -60,10 +60,10 @@ public final class BackgroundParallaxScrolling
 		Texture space = TextureAsset.BACKGROUND_SPACE.get();
 		Texture leftbg = TextureAsset.BACKGROUND_LEFT.get();
 		Texture rightbg = TextureAsset.BACKGROUND_RIGHT.get();
-		batch.draw(space, 0f, 0f, 0, (int) position, Global.width, Global.height);
+		batch.draw(space, 0f, 0f, 0, (int) position, Global.SCREEN_WIDTH, Global.SCREEN_HEIGHT);
 		displayTileMapIfActivated(delta);
-		batch.draw(leftbg, 0f, 0f, 0, (int) position * 2, leftbg.getWidth(), Global.height);
-		batch.draw(rightbg, (float) Global.width - rightbg.getWidth(), 0f, 0, (int) position * 2, Global.width, Global.height);
+		batch.draw(leftbg, 0f, 0f, 0, (int) position * 2, leftbg.getWidth(), Global.SCREEN_HEIGHT);
+		batch.draw(rightbg, (float) Global.SCREEN_WIDTH - rightbg.getWidth(), 0f, 0, (int) position * 2, Global.SCREEN_WIDTH, Global.SCREEN_HEIGHT);
 	}
 
 	private void displayTileMapIfActivated(float delta)

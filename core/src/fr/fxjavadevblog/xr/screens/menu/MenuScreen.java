@@ -83,8 +83,8 @@ public class MenuScreen extends AbstractScreen
 	private void createBlinkingMessage()
 	{
 		pressSpaceBarMessage = new GdxBitmapString(FontUtils.FONT_XENON, MSG, 1.5f);
-		interpolatorX = new Interpolator(Interpolation.sine, 1f, 5, (Global.width - pressSpaceBarMessage.getWidth()) / 2f);
-		interpolatorY = new Interpolator(Interpolation.pow2, 0.5f, 10, (float) (Global.height - titleTexture.getHeight()) / 2 - 50);
+		interpolatorX = new Interpolator(Interpolation.sine, 1f, 5, (Global.SCREEN_WIDTH - pressSpaceBarMessage.getWidth()) / 2f);
+		interpolatorY = new Interpolator(Interpolation.pow2, 0.5f, 10, (float) (Global.SCREEN_HEIGHT - titleTexture.getHeight()) / 2 - 50);
 		pressSpaceBarMessage.setPosition(interpolatorX.getOriginalValue(), interpolatorY.getOriginalValue());
 		msgBlinker = new Blinker(0.15f, pressSpaceBarMessage);
 	}
@@ -130,11 +130,11 @@ public class MenuScreen extends AbstractScreen
 	{
 		String msgDisplayMode = String.format("%s / %s / %d FPS", currentMode, monitor.name, Gdx.graphics.getFramesPerSecond());
 		message.setText(msgDisplayMode);
-		message.draw(this.getBatch(), (Global.width - message.getWidth()) / 2f, 60);
+		message.draw(this.getBatch(), (Global.SCREEN_WIDTH - message.getWidth()) / 2f, 60);
 		message.setText("< " + modPlayer.getMusicName() + " >");
-		message.draw(this.getBatch(), (Global.width - message.getWidth()) / 2f, 120);
-		message.setText(String.format("Virtual Width : %d px / Virtual Height : %d px", Global.width, Global.height));
-		message.draw(this.getBatch(), (Global.width - message.getWidth()) / 2f, 30);
+		message.draw(this.getBatch(), (Global.SCREEN_WIDTH - message.getWidth()) / 2f, 120);
+		message.setText(String.format("Virtual Width : %d px / Virtual Height : %d px", Global.SCREEN_WIDTH, Global.SCREEN_HEIGHT));
+		message.draw(this.getBatch(), (Global.SCREEN_WIDTH - message.getWidth()) / 2f, 30);
 	}
 
 	private void drawTitle()

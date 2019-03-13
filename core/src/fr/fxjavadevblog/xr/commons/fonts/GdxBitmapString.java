@@ -1,5 +1,8 @@
 package fr.fxjavadevblog.xr.commons.fonts;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -88,16 +91,6 @@ public class GdxBitmapString extends Displayable
 	@Override
 	public void render(SpriteBatch batch, float delta)
 	{
-		// Arrays.stream(sprites).filter(Objects::nonNull).forEach(s ->
-		// s.draw(batch));
-
-		for (Sprite s : sprites)
-		{
-			if (s != null)
-			{
-				s.draw(batch);
-			}
-		}
-
+		Arrays.stream(sprites).filter(Objects::nonNull).forEach(s -> s.draw(batch));
 	}
 }
