@@ -1,4 +1,4 @@
-package fr.fxjavadevblog.xr.commons.fonts;
+package fr.fxjavadevblog.xr.commons.fonts.bitmap;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -15,10 +15,10 @@ public class GdxBitmapString extends Displayable
 	private Sprite[] sprites;
 
 	// taille totale de la chaine
-	private int width;
+	private int fullStringWidth;
 
-	// hauteur de la font
-	private int letterWidth;
+	// largeur de la font
+	private int charWidth;
 
 	private float scale;
 
@@ -29,8 +29,8 @@ public class GdxBitmapString extends Displayable
 		super();
 		this.font = font;
 		this.scale = scale;
-		this.width = font.getWidth(text);
-		this.letterWidth = font.getFontWidth();
+		this.fullStringWidth = font.getFullStringWidth(text);
+		this.charWidth = font.getCharWidth();
 		this.populateSprites(text);
 	}
 
@@ -57,7 +57,7 @@ public class GdxBitmapString extends Displayable
 			}
 			sprites[spriteIndex++] = s;
 		}
-		this.width = (text.length() * (int) (letterWidth * scale));
+		this.fullStringWidth = (text.length() * (int) (charWidth * scale));
 	}
 
 	private Sprite[] allocateSpriteArray(String text)
@@ -67,7 +67,7 @@ public class GdxBitmapString extends Displayable
 
 	public int getWidth()
 	{
-		return width;
+		return fullStringWidth;
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class GdxBitmapString extends Displayable
 				s.setX(offsetX);
 				s.setY(y);
 			}
-			offsetX += letterWidth * scale;
+			offsetX += charWidth * scale;
 		}
 
 	}

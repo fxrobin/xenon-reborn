@@ -1,4 +1,4 @@
-package fr.fxjavadevblog.xr.commons.fonts;
+package fr.fxjavadevblog.xr.commons.fonts.ttf;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;

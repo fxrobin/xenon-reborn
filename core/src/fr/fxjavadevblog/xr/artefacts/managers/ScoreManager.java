@@ -1,7 +1,7 @@
 package fr.fxjavadevblog.xr.artefacts.managers;
 
-import fr.fxjavadevblog.xr.commons.fonts.FontUtils;
-import fr.fxjavadevblog.xr.commons.fonts.GdxBitmapString;
+import fr.fxjavadevblog.xr.commons.fonts.bitmap.FontUtils;
+import fr.fxjavadevblog.xr.commons.fonts.bitmap.GdxBitmapString;
 
 public class ScoreManager
 {

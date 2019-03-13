@@ -1,5 +1,13 @@
-package fr.fxjavadevblog.xr.commons.fonts;
+package fr.fxjavadevblog.xr.commons.fonts.ttf;
 
+
+/**
+ * enum de fonts TTF utilisé dans le jeu.
+ * Attention, ne pas confondre les fonts TTF et les fonts BITMAP.
+ * 
+ * @author robin
+ *
+ */
 public enum Font
 {
 	SHARETECH("fonts/ShareTech-Regular.ttf"), 

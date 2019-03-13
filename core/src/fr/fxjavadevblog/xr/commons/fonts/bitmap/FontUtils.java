@@ -1,4 +1,4 @@
-package fr.fxjavadevblog.xr.commons.fonts;
+package fr.fxjavadevblog.xr.commons.fonts.bitmap;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -14,12 +14,9 @@ import fr.fxjavadevblog.xr.commons.libs.AssetLib;
 
 public enum FontUtils
 {
-	FONT_GREEN("/fonts/font-green.properties"), 
-	FONT_XENON("/fonts/font-xenon-2.properties"), 
-	FONT_BLUE("/fonts/font-blue.properties");
+	FONT_GREEN("/fonts/font-green.properties"), FONT_XENON("/fonts/font-xenon-2.properties"), FONT_BLUE("/fonts/font-blue.properties");
 
 	private final Log log = LogFactory.getLog(FontUtils.class);
-
 
 	private BitmapFont bitmapFont;
 
@@ -33,55 +30,54 @@ public enum FontUtils
 			int fontWidth = Integer.parseInt(config.getProperty("letter-width"));
 			int fontHeight = Integer.parseInt(config.getProperty("letter-height"));
 			String stringMap = config.getProperty("string-map");
-			bitmapFont = BitmapFont.build(font, fontWidth, fontHeight, stringMap);
-			
-			log.info("Font loaded : " + propertyFile);
-			log.info("- font-file : " + config.getProperty("font-file"));
-			log.info("- letter-width : " + fontWidth);
-			log.info("- letter-height : " + fontHeight);
-			log.info("- string-map : " + stringMap);
-			
-			
+			if (log.isInfoEnabled())
+			{
+				log.info("Font loaded : " + propertyFile);
+				log.info("- font-file : " + config.getProperty("font-file"));
+				log.info("- letter-width : " + fontWidth);
+				log.info("- letter-height : " + fontHeight);
+				log.info("- string-map : " + stringMap);
+			}
+			bitmapFont = BitmapFont.build(font, fontWidth, fontHeight, stringMap);	
 		}
 		catch (IOException e)
 		{
 			log.error("Impossible de lire le fichier de ressource de font : " + propertyFile);
 		}
-
 	}
 
-	public int getWidth(String txt)
+	public int getFullStringWidth(String txt)
 	{
-		return txt.length() * bitmapFont.getWidth();
+		return txt.length() * bitmapFont.getCharWidth();
 	}
 
 	public int getHeight(String txt) /* NOSONAR */
 	{
-		return bitmapFont.getHeight();
+		return bitmapFont.getCharHeight();
 	}
 
-	public int getFontWidth()
+	public int getCharWidth()
 	{
-		return bitmapFont.getWidth();
+		return bitmapFont.getCharWidth();
 	}
 
 	protected void print(Batch b, float x, float y, String txt)
 	{
 		for (int i = 0; i < txt.length(); i++)
 		{
-			print(b, x + (i * bitmapFont.getWidth()), y, txt.charAt(i));
+			print(b, x + (i * bitmapFont.getCharWidth()), y, txt.charAt(i));
 		}
 	}
 
 	protected void print(Batch batch, float positionX, float positionY, char character)
 	{
-		TextureRegion tr = bitmapFont.getChar(character);
+		TextureRegion tr = bitmapFont.getTextureOf(character);
 		if (tr != null) batch.draw(tr, positionX, positionY);
 	}
 
 	protected TextureRegion getTextureRegionOfChar(char character)
 	{
-		return bitmapFont.getChar(character);
+		return bitmapFont.getTextureOf(character);
 	}
 
 }

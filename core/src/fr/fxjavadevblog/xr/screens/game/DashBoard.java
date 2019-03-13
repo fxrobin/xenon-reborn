@@ -14,8 +14,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import fr.fxjavadevblog.xr.artefacts.friendly.ship.Ship;
 import fr.fxjavadevblog.xr.artefacts.managers.ScoreManager;
 import fr.fxjavadevblog.xr.commons.Global;
-import fr.fxjavadevblog.xr.commons.fonts.GdxBitmapString;
-import fr.fxjavadevblog.xr.commons.fonts.TrueTypeFont;
+import fr.fxjavadevblog.xr.commons.fonts.bitmap.GdxBitmapString;
+import fr.fxjavadevblog.xr.commons.fonts.ttf.TrueTypeFont;
 import fr.fxjavadevblog.xr.commons.libs.TextureAsset;
 
 /**

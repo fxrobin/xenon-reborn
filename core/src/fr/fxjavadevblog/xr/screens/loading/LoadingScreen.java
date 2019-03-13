@@ -18,7 +18,7 @@ import com.badlogic.gdx.math.Interpolation;
 import fr.fxjavadevblog.xr.commons.Global;
 import fr.fxjavadevblog.xr.commons.SingleExecutor;
 import fr.fxjavadevblog.xr.commons.displays.Interpolator;
-import fr.fxjavadevblog.xr.commons.fonts.TrueTypeFont;
+import fr.fxjavadevblog.xr.commons.fonts.ttf.TrueTypeFont;
 import fr.fxjavadevblog.xr.commons.libs.AssetLib;
 import fr.fxjavadevblog.xr.commons.libs.ModAsset;
 import fr.fxjavadevblog.xr.commons.libs.TextureAsset;
