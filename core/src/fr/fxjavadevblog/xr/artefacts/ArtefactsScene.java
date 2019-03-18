@@ -14,6 +14,7 @@ public interface ArtefactsScene
 	 * retourne la liste des artefacts de la scène.
 	 * 
 	 * @return
+	 * 		liste des artefacts de la scène.
 	 */
 	List<Artefact> getArtefacts();
 }

@@ -10,5 +10,18 @@ package fr.fxjavadevblog.xr.artefacts;
  */
 public enum Event
 {
-	CREATED, HIT, DESTROYED;
+	/**
+	 * évenement déclenché quand un artefact est créé.
+	 */
+	CREATED,
+	
+	/**
+	 * événement déclenché quand un artefact est touché.
+	 */
+	HIT, 
+	
+	/**
+	 * événement déclenché quand un artefact est détruit.
+	 */
+	DESTROYED;
 }
