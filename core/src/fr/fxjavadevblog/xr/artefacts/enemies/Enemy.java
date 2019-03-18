@@ -10,7 +10,7 @@ import fr.fxjavadevblog.xr.commons.utils.DeltaTimeAccumulator;
 import fr.fxjavadevblog.xr.commons.utils.RandomUtils;
 
 /**
- * réprésente un ennemi.
+ * représente un ennemi.
  * 
  * @author robin
  *
