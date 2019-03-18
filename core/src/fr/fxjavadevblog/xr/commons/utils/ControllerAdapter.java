@@ -22,15 +22,7 @@ public class ControllerAdapter<V  extends Controls> extends Controller<V>
 	
 	public boolean isReleased(V control)
 	{
-		if (this.adaptee.when(control) > 0L && !adaptee.isPressed(control))
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-		
+		return this.adaptee.when(control) > 0L && !adaptee.isPressed(control);
 	}
 
 	@Override
