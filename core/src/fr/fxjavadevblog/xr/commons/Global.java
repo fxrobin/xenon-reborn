@@ -84,7 +84,7 @@ public final class Global
 	/**
 	 * nombre d'ennemis générés par "escadrille".
 	 */
-	public static final int ENEMIE_NUMBER_BY_SQUADRONS = 3;
+	public static final int ENEMY_NUMBER_BY_SQUADRONS = 3;
 
 	/**
 	 * nombre de secondes d'attente entre chaque génération d'une vague d'ennemis.

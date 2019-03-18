@@ -34,7 +34,7 @@ public class EnemyManager implements Renderable
 		{
 			/* on génère 4 enemis toutes les 4 secondes */
 			/* boucle for avec streaming API */
-			IntStream.range(0, Global.ENEMIE_NUMBER_BY_SQUADRONS).forEach(i -> {
+			IntStream.range(0, Global.ENEMY_NUMBER_BY_SQUADRONS).forEach(i -> {
 				Enemy e = EnemyType.createRandom();
 				enemies.add(e);
 			});
