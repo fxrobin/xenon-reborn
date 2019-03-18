@@ -8,8 +8,12 @@ import fr.fxjavadevblog.xr.commons.utils.GdxCommons;
 import fr.fxjavadevblog.xr.screens.AbstractScreen;
 
 /**
- * cette classe change l'état du vaisseau en fonction des entrées du clavier.
- * cette classe génère les tirs.
+ * <p>En fonction des entrées du clavier :
+ * <ul>
+ *   <li>cette classe change l'état du vaisseau</li> 
+ *   <li>cette classe génère les tirs</li>
+ * </ul>
+ * </p>
  * 
  * @author robin
  *

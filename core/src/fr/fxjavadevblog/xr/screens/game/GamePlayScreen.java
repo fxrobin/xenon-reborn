@@ -43,10 +43,10 @@ public class GamePlayScreen extends AbstractScreen implements ArtefactsScene
 	private BackgroundParallaxScrolling scrolling;
 	private DashBoard dashBoard;
 
-	private EnemyManager em = EnemyManager.getInstance();
-	private CollisionManager cm = CollisionManager.getInstance();
+	private EnemyManager enemyManager = EnemyManager.getInstance();
+	private CollisionManager collisionManager = CollisionManager.getInstance();
 	
-	private BonusManager bm =  BonusManager.getInstance();
+	private BonusManager bonusManager =  BonusManager.getInstance();
 	
 	private Ship ship;
 
@@ -82,13 +82,12 @@ public class GamePlayScreen extends AbstractScreen implements ArtefactsScene
 	@Override
 	public void render(float deltaTime)
 	{
-		this.checkInputKeys(deltaTime);
-		em.generateEnemies(deltaTime);
-		this.translateWorld(deltaTime);
-		List<Artefact> allPlayerObjects = getFriendlyArtefacts();
-		cm.checkCollision(em.getEnemies(), allPlayerObjects);
-		bm.checkBonus(ship);
-		this.renderWorld(deltaTime);
+		checkPlayerInputKeys(deltaTime);
+		enemyManager.generateEnemies(deltaTime);
+		translateWorld(deltaTime);
+		collisionManager.checkCollision(enemyManager.getEnemies(), getFriendlyArtefacts());
+		bonusManager.checkBonus(ship);
+		renderWorld(deltaTime);
 	}
 
 	/**
@@ -109,7 +108,7 @@ public class GamePlayScreen extends AbstractScreen implements ArtefactsScene
 		GdxCommons.spriteBatchTransaction(this.getBatch(), batch -> {
 			this.scrolling.render(deltaTime);
 			this.renderShoots(batch, deltaTime);
-			this.em.render(batch, deltaTime);
+			this.enemyManager.render(batch, deltaTime);
 			BonusManager.getInstance().render(this.getBatch(), deltaTime);
 			this.renderShipOrGameOver(deltaTime, batch);
 			ExplosionManager.render(batch, deltaTime);
@@ -158,10 +157,10 @@ public class GamePlayScreen extends AbstractScreen implements ArtefactsScene
 
 	private void translateWorld(float delta)
 	{
-		em.act(delta);
+		enemyManager.update(delta);
 	}
 
-	private void checkInputKeys(float delta)
+	private void checkPlayerInputKeys(float delta)
 	{
 		ShipHandler.handle(ship);
 		ship.update(delta);
@@ -202,7 +201,7 @@ public class GamePlayScreen extends AbstractScreen implements ArtefactsScene
 	@Override
 	public List<Artefact> getArtefacts()
 	{
-		List<Artefact> world = new LinkedList<>(em.getEnemies());
+		List<Artefact> world = new LinkedList<>(enemyManager.getEnemies());
 		world.addAll(ProjectileManager.getInstance().getShoots());
 		return world;
 	}

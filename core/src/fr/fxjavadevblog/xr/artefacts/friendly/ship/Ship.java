@@ -12,6 +12,7 @@ import fr.fxjavadevblog.xr.commons.utils.GdxCommons;
 
 public class Ship extends AbstractArtefact
 {
+	private static final int LOWER_MARGIN = 80;
 	private ShipRenderer shipRenderer;
 	private Shield shield;
 	private SecondWeapon secondWeapon;
@@ -20,7 +21,7 @@ public class Ship extends AbstractArtefact
 
 	public Ship()
 	{
-		super(0, 0, Global.SHIP_LIFE_POINTS, 20);
+		super(0, 0, Global.SHIP_LIFE_POINTS, Global.SHIP_IMPACT_FORCE);
 		shipRenderer = new ShipRenderer(this);
 		shield = new Shield();
 		secondWeapon = new SecondWeapon();
@@ -119,7 +120,7 @@ public class Ship extends AbstractArtefact
 	{
 		Sprite currentSprite = shipRenderer.getCurrentSprite();
 		if (currentSprite.getX() < 0) currentSprite.setX(0);
-		if (currentSprite.getY() < 80) currentSprite.setY(80);
+		if (currentSprite.getY() < LOWER_MARGIN) currentSprite.setY(LOWER_MARGIN);
 		if (currentSprite.getX() > Global.SCREEN_WIDTH - currentSprite.getWidth()) currentSprite.setX(Global.SCREEN_WIDTH - currentSprite.getWidth());
 		if (currentSprite.getY() > Global.SCREEN_HEIGHT - currentSprite.getHeight()) currentSprite.setY(Global.SCREEN_HEIGHT - currentSprite.getHeight());
 		GdxCommons.computeBoundingCircle(currentSprite, getBoundingCircle());

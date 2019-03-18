@@ -10,15 +10,17 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.utils.Disposable;
 
+import fr.fxjavadevblog.xr.commons.libs.FontAsset;
+
 public enum TrueTypeFont implements Disposable
 {
 	DEFAULT, 
-	SHARETECH_12(Font.SHARETECH.resource(), 12), 
-	SHARETECH_30(Font.SHARETECH.resource(), 30), 
-	SHARETECH_30_BLACK(Font.SHARETECH.resource(), 30, Color.BLACK), 
-	PIXEL_30_BLACK(Font.PIXEL.resource(), 30,	Color.BLACK), 
-	COMPUTER_30_WHITE(Font.COMPUTER.resource(), 40, Color.WHITE), 
-	COMPUTER_30_BLACK(Font.COMPUTER.resource(), 40, Color.BLACK);
+	SHARETECH_12(FontAsset.SHARETECH.resource(), 12), 
+	SHARETECH_30(FontAsset.SHARETECH.resource(), 30), 
+	SHARETECH_30_BLACK(FontAsset.SHARETECH.resource(), 30, Color.BLACK), 
+	PIXEL_30_BLACK(FontAsset.PIXEL.resource(), 30,	Color.BLACK), 
+	COMPUTER_30_WHITE(FontAsset.COMPUTER.resource(), 40, Color.WHITE), 
+	COMPUTER_30_BLACK(FontAsset.COMPUTER.resource(), 40, Color.BLACK);
 
 	private Log log = LogFactory.getLog(this.getClass());
 	private BitmapFont font;

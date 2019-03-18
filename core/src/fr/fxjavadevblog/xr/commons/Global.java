@@ -1,8 +1,8 @@
 package fr.fxjavadevblog.xr.commons;
 
 /**
- * classes de constantes et de paramètrages de l'application. la classe est
- * nommée "C" même si elle ne contient pas que des constantes.
+ * classes de constantes et de paramètrage de l'application. la classe est
+ * nommée "Global" même si elle ne contient pas que des constantes.
  * 
  * @author robin
  *
@@ -64,12 +64,32 @@ public final class Global
 	 * points de vie max du vaisseau.
 	 */
 	public static final int SHIP_LIFE_POINTS = 20;
-	
+
+	/**
+	 * force d'impact du vaisseau (quand il percute qqch).
+	 */
+	public static final int SHIP_IMPACT_FORCE = 20;
+
 	
 	/**
-	 * pour afficher les cercles de détection de collision
+	 * pour afficher les cercles de détection de collision.
 	 */
 	private static boolean displayBoundingCircles = false;
+
+	/**
+	 * taille du cercle rouge de "debug" des artefacts.
+	 */
+	public static final int BOUNDING_CIRCLE_WIDTH = 3;
+
+	/**
+	 * nombre d'ennemis générés par "escadrille".
+	 */
+	public static final int ENEMIE_NUMBER_BY_SQUADRONS = 3;
+
+	/**
+	 * nombre de secondes d'attente entre chaque génération d'une vague d'ennemis.
+	 */
+	public static final float GENERATION_INTERVAL = 4f;
 
 	private Global()
 	{

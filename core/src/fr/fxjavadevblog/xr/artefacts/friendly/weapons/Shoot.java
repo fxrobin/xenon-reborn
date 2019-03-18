@@ -16,25 +16,23 @@ import fr.fxjavadevblog.xr.commons.displays.Interpolator;
  */
 public class Shoot extends AbstractArtefact
 {
+	private static final float INTERPOLATOR_DISTANCE = 5f;
+	private static final float INTERPOLATOR_TIME = 0.8f;
 	private AnimatedSprite animatedSprite;
-	private Interpolator interpolator;
+	
 
 	public Shoot(AnimatedSprite animatedSprite, int lifeForce, int impactForce, float x, float y, float vX, float vY)
 	{
 		super(vX, vY, lifeForce, impactForce);
 		this.animatedSprite = animatedSprite;
 		this.animatedSprite.setCenter(x, y);
-		this.interpolator = new Interpolator(Interpolation.sine, 0.8f, 5f, x);
+		this.setInterpolatorX(new Interpolator(Interpolation.sine, INTERPOLATOR_TIME, INTERPOLATOR_DISTANCE, x));
 	}
 
 	@Override
 	public void render(SpriteBatch batch, float delta)
 	{
-		animatedSprite.setCenterX(interpolator.getOriginalValue());
-		this.update(delta);
-		float newPosition = interpolator.calculate(delta);
-		animatedSprite.setCenterX(newPosition);
-		this.getBoundingCircle().x = newPosition;
+		super.update(delta);
 		super.render(batch, delta);
 		animatedSprite.render(batch, delta);
 	}

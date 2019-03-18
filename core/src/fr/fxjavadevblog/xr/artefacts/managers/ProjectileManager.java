@@ -42,7 +42,7 @@ public class ProjectileManager
 
 	private static void checkBigFire(Ship ship)
 	{
-		if (ship.getSecondaryWeapon().isReady() && !AbstractScreen.getUserInput().isPressed(GameControls.B))
+		if (ship.getSecondaryWeapon().isReady() && AbstractScreen.getUserInput().when(GameControls.B)>0L)
 		{
 			ship.getSecondaryWeapon().disable();
 			pm.addShoot(ShootType.BIG_FLAMES, ship.getCenterX(), ship.getCenterY());
@@ -51,7 +51,7 @@ public class ProjectileManager
 
 	private static void checkNormalFire(Ship ship)
 	{
-		if (AbstractScreen.getUserInput().isPressed(GameControls.A))
+		if (AbstractScreen.getUserInput().when(GameControls.B)>0L)
 		{
 			pm.addShoot(ShootType.NORMAL_LASER, ship.getCenterX(), ship.getCenterY());
 		}

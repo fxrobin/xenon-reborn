@@ -16,6 +16,10 @@ public enum EnemyType
 	RAFALE(TextureAsset.RAFALE, 15, 15), 
 	BLACK_BIRD(TextureAsset.BLACK_BIRD, 15,	15), 
 	XENON_SHIP(TextureAsset.XENON_SHIP, 15, 15);
+	
+	
+	// optimisation pour ne pas générer un tableau à chaque appel.
+	private static final EnemyType[] enemyTypes = EnemyType.values();
 
 	private TextureAsset textureRef;
 
@@ -47,16 +51,16 @@ public enum EnemyType
 	 * 
 	 * @return
 	 */
-	public static Enemy random()
+	public static Enemy createRandom()
 	{
-		Enemy e = selectRandom();
-		randomCoords(e);
-		return e;
+		EnemyType enemyType = RandomUtils.pick(enemyTypes);
+		Enemy enemy = create(enemyType);
+		randomCoords(enemy);
+		return enemy;
 	}
-
-	private static Enemy selectRandom()
+	
+	private static Enemy create(EnemyType enemyType)
 	{
-		EnemyType enemyType = RandomUtils.pick(EnemyType.values());
 		Texture texture = enemyType.getTextureRef().get();
 		return new Enemy(texture, enemyType.getLifeForce(), enemyType.getImpactForce(), texture.getWidth() / 2f);
 	}

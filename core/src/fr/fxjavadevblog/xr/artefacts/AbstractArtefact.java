@@ -93,8 +93,8 @@ public abstract class AbstractArtefact extends Observable implements Artefact
 	@Override
 	public void update(float delta)
 	{
-		updateX(delta);
-		updateY(delta);
+		this.updateX(delta);
+		this.updateY(delta);
 		GdxCommons.computeBoundingCircle(getSprite(), getBoundingCircle());
 	}
 
@@ -235,7 +235,7 @@ public abstract class AbstractArtefact extends Observable implements Artefact
 		{
 			// le spriteBatch en cours doit être d'abord désactivé.
 			batch.end();
-			Gdx.gl.glLineWidth(3);
+			Gdx.gl.glLineWidth(Global.BOUNDING_CIRCLE_WIDTH);
 			renderer.begin(ShapeType.Line);
 			renderer.setProjectionMatrix(batch.getProjectionMatrix());
 			renderer.circle(this.boundingCircle.x, this.boundingCircle.y, this.boundingCircle.radius);

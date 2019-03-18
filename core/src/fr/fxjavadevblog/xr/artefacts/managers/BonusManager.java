@@ -34,7 +34,7 @@ public class BonusManager
 
 	public void addBonus(BonusType bonusType, float x, float y)
 	{
-		Bonus bonus = new Bonus(bonusType, bonusType.getLifeForce(), bonusType.getLifeForce(), x, y, bonusType.getVX(), bonusType.getVY());
+		Bonus bonus = Bonus.newInstance(bonusType, bonusType.getLifeForce(), bonusType.getLifeForce(), x, y, bonusType.getVX(), bonusType.getVY());
 		bonuses.add(bonus);
 	}
 

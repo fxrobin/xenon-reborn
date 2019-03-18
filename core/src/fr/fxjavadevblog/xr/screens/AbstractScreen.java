@@ -8,13 +8,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.kennycason.gdx.controller.Controller;
 
+import fr.fxjavadevblog.xr.commons.utils.ControllerAdapter;
 import fr.fxjavadevblog.xr.commons.utils.ControllerFactory;
 import fr.fxjavadevblog.xr.commons.utils.GameControls;
 
 public abstract class AbstractScreen implements Screen
 {
 	private final Log log = LogFactory.getLog(AbstractScreen.class);
-	private static final Controller<GameControls> userInput = ControllerFactory.buildMultiController();
+	private static final ControllerAdapter<GameControls> userInput = new ControllerAdapter<>(ControllerFactory.buildMultiController());
 
 	private final SpriteBatch batch;
 	private XenonControler controler;
@@ -40,7 +41,7 @@ public abstract class AbstractScreen implements Screen
 		return controler.getShapeRenderer();
 	}
 
-	public static Controller<GameControls> getUserInput()
+	public static ControllerAdapter<GameControls> getUserInput()
 	{
 		return userInput;
 	}

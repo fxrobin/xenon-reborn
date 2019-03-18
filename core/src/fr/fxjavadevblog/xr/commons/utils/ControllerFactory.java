@@ -30,15 +30,15 @@ public final class ControllerFactory
 		buttonMapper.map(GameControls.RIGHT, Input.Keys.RIGHT);
 
 		buttonMapper.map(GameControls.START, Input.Keys.SPACE);
-		buttonMapper.map(GameControls.SELECT, Input.Keys.ALT_LEFT);
+		buttonMapper.map(GameControls.SELECT, Input.Keys.ENTER);
 
 		buttonMapper.map(GameControls.A, Input.Keys.CONTROL_LEFT);
 		buttonMapper.map(GameControls.B, Input.Keys.SHIFT_LEFT);
 		buttonMapper.map(GameControls.X, Input.Keys.W);
 		buttonMapper.map(GameControls.Y, Input.Keys.X);
 
-		buttonMapper.map(GameControls.L1, Input.Keys.SHIFT_LEFT);
-		buttonMapper.map(GameControls.L2, Input.Keys.W);
+		buttonMapper.map(GameControls.L1, Input.Keys.CONTROL_RIGHT);
+		buttonMapper.map(GameControls.L2, Input.Keys.ALT_LEFT);
 		buttonMapper.map(GameControls.R1, Input.Keys.C);
 		buttonMapper.map(GameControls.R2, Input.Keys.D);
 

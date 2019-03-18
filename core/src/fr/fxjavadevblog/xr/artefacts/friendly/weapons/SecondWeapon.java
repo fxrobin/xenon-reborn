@@ -37,21 +37,18 @@ public class SecondWeapon
 	{
 		if (charging)
 		{
-			this.recharger(delta);
+			this.calculateCharge(delta);
 		}
 
 		// remise à false car on doit maintenir la touche appuyée
 		charging = false;
 	}
 
-	private void recharger(float delta)
+	private void calculateCharge(float delta)
 	{
-		energy += (delta * Global.WEAPON_CHARGING_SPEED);
-		energy = (energy > 100f) ? 100f : energy;
-		if (!ready && energy >= 100f)
-		{
-			ready = true;
-		}
+		energy += delta * Global.WEAPON_CHARGING_SPEED;
+		energy = Math.min(energy, 100f);
+		ready = (energy >= 100f);
 	}
 
 	/**

@@ -3,7 +3,7 @@ package fr.fxjavadevblog.xr.artefacts;
 public class ArtefactData
 {
 	/**
-	 * points de vie de l'artefact.
+	 * points de vie initiaux (et max) de l'artefact.
 	 */
 	private final int maxLifePoints;
 
@@ -12,11 +12,11 @@ public class ArtefactData
 	 */
 	private int lifePoints;
 	/**
-	 * force d'impact à appliquer lors des collisions.
+	 * force d'impact à appliquer sur l'autre artefact lors des collisions.
 	 */
 	private final int impactForce;
 	/**
-	 * vitesse de dépaclement sur l'axe des X.
+	 * vitesse de déplacement sur l'axe des X.
 	 */
 	private float vectorX;
 	/**
@@ -46,7 +46,7 @@ public class ArtefactData
 
 	public void setLifePoints(int lifePoints)
 	{
-		this.lifePoints = (lifePoints > maxLifePoints) ? maxLifePoints : lifePoints;
+		this.lifePoints = Math.min(lifePoints, maxLifePoints);
 	}
 
 	public float getVectorX()

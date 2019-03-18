@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import fr.fxjavadevblog.xr.artefacts.enemies.Bullet;
 import fr.fxjavadevblog.xr.artefacts.enemies.Enemy;
 import fr.fxjavadevblog.xr.artefacts.enemies.EnemyType;
+import fr.fxjavadevblog.xr.commons.Global;
 import fr.fxjavadevblog.xr.commons.displays.Renderable;
 import fr.fxjavadevblog.xr.commons.libs.AnimationAsset;
 import fr.fxjavadevblog.xr.commons.utils.DeltaTimeAccumulator;
@@ -17,7 +18,7 @@ import fr.fxjavadevblog.xr.commons.utils.GdxCommons;
 
 public class EnemyManager implements Renderable
 {
-	private DeltaTimeAccumulator deltaTimeAccumulator = new DeltaTimeAccumulator(4f);
+	private DeltaTimeAccumulator deltaTimeAccumulator = new DeltaTimeAccumulator(Global.GENERATION_INTERVAL);
 	private List<Enemy> enemies = new LinkedList<>();
 
 	private static EnemyManager em = new EnemyManager();
@@ -33,8 +34,8 @@ public class EnemyManager implements Renderable
 		{
 			/* on génère 4 enemis toutes les 4 secondes */
 			/* boucle for avec streaming API */
-			IntStream.range(0, 3).forEach(i -> {
-				Enemy e = EnemyType.random();
+			IntStream.range(0, Global.ENEMIE_NUMBER_BY_SQUADRONS).forEach(i -> {
+				Enemy e = EnemyType.createRandom();
 				enemies.add(e);
 			});
 
@@ -45,7 +46,7 @@ public class EnemyManager implements Renderable
 
 	public void generateEnemySquadron(int numbers)
 	{
-		Enemy original = EnemyType.random();
+		Enemy original = EnemyType.createRandom();
 		enemies.add(original);
 		for (int i = 1; i < numbers; i++)
 		{
@@ -58,18 +59,23 @@ public class EnemyManager implements Renderable
 
 	}
 
-	public void act(float delta)
+	public void update(float delta)
 	{
 		enemies.forEach(e -> {
 			e.update(delta);
 			if (!e.isAlive())
 			{
-				AnimationAsset anim = e instanceof Bullet ? AnimationAsset.EXPLOSION_LITTLE : AnimationAsset.EXPLOSION_BIG;
-				ExplosionManager.addExplosion(e, anim);
+				generateExplosion(e);
 			}
 		});
 
 		enemies.removeIf(e -> e.getY() < -e.getHeight() || !e.isAlive());
+	}
+
+	private void generateExplosion(Enemy e)
+	{
+		AnimationAsset anim = e instanceof Bullet ? AnimationAsset.EXPLOSION_LITTLE : AnimationAsset.EXPLOSION_BIG;
+		ExplosionManager.addExplosion(e, anim);
 	}
 
 	public List<Enemy> getEnemies()

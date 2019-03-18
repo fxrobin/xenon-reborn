@@ -1,4 +1,4 @@
-package fr.fxjavadevblog.xr.commons.fonts.ttf;
+package fr.fxjavadevblog.xr.commons.libs;
 
 
 /**
@@ -8,7 +8,7 @@ package fr.fxjavadevblog.xr.commons.fonts.ttf;
  * @author robin
  *
  */
-public enum Font
+public enum FontAsset
 {
 	SHARETECH("fonts/ShareTech-Regular.ttf"), 
 	PIXEL("fonts/PixelOperatorHB.ttf"),
@@ -16,7 +16,7 @@ public enum Font
 
 	private final String fontFile;
 
-	private Font(String fontFile)
+	private FontAsset(String fontFile)
 	{
 		this.fontFile = fontFile;
 	}

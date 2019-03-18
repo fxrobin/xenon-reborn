@@ -53,10 +53,10 @@ public class Enemy extends AbstractArtefact
 	}
 
 	@Override
-	public void render(SpriteBatch batch, float delta)
+	public void render(SpriteBatch batch, float deltaTime)
 	{
-		accumulator.addAndCheck(delta);
-		super.render(batch, delta);
+		accumulator.addAndCheck(deltaTime);
+		super.render(batch, deltaTime);
 		sprite.draw(batch);
 	}
 

@@ -98,9 +98,9 @@ public interface Artefact extends Renderable
 	 * déplace l'artefact en fonction de sa vitesse sur les 2 axes et en fonction
 	 * du temps delta écoulé.
 	 * 
-	 * @param delta
+	 * @param deltaTime
 	 */
-	void update(float delta);
+	void update(float deltaTime);
 
 	/**
 	 * affecte la taille du cercle de collision.
