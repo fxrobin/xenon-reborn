@@ -6,14 +6,11 @@ import java.util.List;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import fr.fxjavadevblog.xr.artefacts.Artefact;
-import fr.fxjavadevblog.xr.artefacts.friendly.ship.Ship;
 import fr.fxjavadevblog.xr.artefacts.friendly.weapons.Shoot;
 import fr.fxjavadevblog.xr.artefacts.friendly.weapons.ShootType;
 import fr.fxjavadevblog.xr.commons.Global;
 import fr.fxjavadevblog.xr.commons.libs.AnimationAsset;
-import fr.fxjavadevblog.xr.commons.utils.GameControls;
 import fr.fxjavadevblog.xr.commons.utils.RandomUtils;
-import fr.fxjavadevblog.xr.screens.AbstractScreen;
 
 public class ProjectileManager
 {
@@ -29,33 +26,7 @@ public class ProjectileManager
 	private ProjectileManager() 
 	{
 		// protection du singleton
-	}
-
-	public static void checkFire(Ship ship)
-	{
-		if (ship.canFire())
-		{
-			checkNormalFire(ship);
-			checkBigFire(ship);
-		}
-	}
-
-	private static void checkBigFire(Ship ship)
-	{
-		if (ship.getSecondaryWeapon().isReady() && AbstractScreen.getUserInput().when(GameControls.B)>0L)
-		{
-			ship.getSecondaryWeapon().disable();
-			pm.addShoot(ShootType.BIG_FLAMES, ship.getCenterX(), ship.getCenterY());
-		}
-	}
-
-	private static void checkNormalFire(Ship ship)
-	{
-		if (AbstractScreen.getUserInput().when(GameControls.B)>0L)
-		{
-			pm.addShoot(ShootType.NORMAL_LASER, ship.getCenterX(), ship.getCenterY());
-		}
-	}
+	}	
 
 	public void renderShoots(SpriteBatch batch, float delta)
 	{

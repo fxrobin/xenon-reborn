@@ -61,6 +61,7 @@ public class SecondWeapon
 
 	public void disable()
 	{
+		fullDischarge();
 		ready = false;
 	}
 

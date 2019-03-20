@@ -1,4 +1,4 @@
-package fr.fxjavadevblog.xr.commons.utils;
+package fr.fxjavadevblog.xr.commons.gamepads;
 
 import com.badlogic.gdx.Input;
 import com.kennycason.gdx.controller.KeyboardController;
@@ -7,6 +7,8 @@ import com.kennycason.gdx.controller.MultiplexedController;
 import com.kennycason.gdx.controller.mapping.Axis;
 import com.kennycason.gdx.controller.mapping.AxisMapper;
 import com.kennycason.gdx.controller.mapping.ButtonMapper;
+
+import fr.fxjavadevblog.xr.commons.utils.GameControls;
 
 public final class ControllerFactory
 {

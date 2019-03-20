@@ -1,4 +1,4 @@
-package fr.fxjavadevblog.xr.commons.utils;
+package fr.fxjavadevblog.xr.commons.gamepads;
 
 import com.kennycason.gdx.controller.Controller;
 import com.kennycason.gdx.controller.controls.Controls;

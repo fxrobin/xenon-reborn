@@ -6,10 +6,9 @@ import org.apache.commons.logging.LogFactory;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.kennycason.gdx.controller.Controller;
 
-import fr.fxjavadevblog.xr.commons.utils.ControllerAdapter;
-import fr.fxjavadevblog.xr.commons.utils.ControllerFactory;
+import fr.fxjavadevblog.xr.commons.gamepads.ControllerAdapter;
+import fr.fxjavadevblog.xr.commons.gamepads.ControllerFactory;
 import fr.fxjavadevblog.xr.commons.utils.GameControls;
 
 public abstract class AbstractScreen implements Screen

@@ -1,17 +1,20 @@
 package fr.fxjavadevblog.xr.artefacts.friendly.ship;
 
+import com.badlogic.gdx.Gdx;
+
+import fr.fxjavadevblog.xr.artefacts.friendly.weapons.ShootType;
+import fr.fxjavadevblog.xr.artefacts.managers.ProjectileManager;
 import fr.fxjavadevblog.xr.commons.Global;
 import fr.fxjavadevblog.xr.commons.UserControls;
 import fr.fxjavadevblog.xr.commons.UserControls.Control;
-import fr.fxjavadevblog.xr.commons.utils.GameControls;
 import fr.fxjavadevblog.xr.commons.utils.GdxCommons;
-import fr.fxjavadevblog.xr.screens.AbstractScreen;
 
 /**
- * <p>En fonction des entrées du clavier :
+ * <p>
+ * En fonction des entrées du clavier :
  * <ul>
- *   <li>cette classe change l'état du vaisseau</li> 
- *   <li>cette classe génère les tirs</li>
+ * <li>cette classe change l'état du vaisseau</li>
+ * <li>cette classe génère les tirs</li>
  * </ul>
  * </p>
  * 
@@ -43,14 +46,20 @@ public final class ShipHandler
 		checkVerticalMove(ship);
 		checkHorizontalMove(ship);
 		checkShield(ship);
-		checkSecondWeapon(ship);
+		if (ship.canFire())
+		{
+			checkNormalFire(ship);
+			checkSecondWeapon(ship);
+		}
 		handleInertia(ship);
 	}
 
 	private static void checkVerticalMove(Ship ship)
 	{
 		vControl = ShipInput.Vertical.NONE;
-		/* précondition au mouvement : que les 2 touches ne soient pas enfoncées */
+		/*
+		 * précondition au mouvement : que les 2 touches ne soient pas enfoncées
+		 */
 		int keyUp = UserControls.get(Control.UP);
 		int keyDown = UserControls.get(Control.DOWN);
 
@@ -58,13 +67,13 @@ public final class ShipHandler
 
 		float vY = ship.getVectorY();
 
-		if (AbstractScreen.getUserInput().isPressed(GameControls.UP))
+		if (Gdx.input.isKeyPressed(keyUp))
 		{
 			vControl = ShipInput.Vertical.UP;
 			vY += Global.SHIP_ACCELLERATION;
 			ship.setVectorY(vY > Global.SHIP_SPEED ? Global.SHIP_SPEED : vY);
 		}
-		else if (AbstractScreen.getUserInput().isPressed(GameControls.DOWN))
+		else if (Gdx.input.isKeyPressed(keyDown))
 		{
 			vControl = ShipInput.Vertical.DOWN;
 			vY -= Global.SHIP_ACCELLERATION;
@@ -79,18 +88,20 @@ public final class ShipHandler
 		int keyLeft = UserControls.get(Control.LEFT);
 		int keyRight = UserControls.get(Control.RIGHT);
 
-		/* précondition au mouvement : que les 2 touches ne soient pas enfoncées */
+		/*
+		 * précondition au mouvement : que les 2 touches ne soient pas enfoncées
+		 */
 		if (GdxCommons.checkConcurrentKeys(keyLeft, keyRight)) return;
 
 		float vX = ship.getVectorX();
 
-		if ((AbstractScreen.getUserInput().isPressed(GameControls.LEFT)))
+		if (Gdx.input.isKeyPressed(keyLeft))
 		{
 			hControl = ShipInput.Horizontal.LEFT;
 			vX -= Global.SHIP_ACCELLERATION;
 			ship.setVectorX(vX < -Global.SHIP_SPEED ? -Global.SHIP_SPEED : vX);
 		}
-		else if ((AbstractScreen.getUserInput().isPressed(GameControls.RIGHT)))
+		else if (Gdx.input.isKeyPressed(keyRight))
 		{
 			hControl = ShipInput.Horizontal.RIGHT;
 			vX += Global.SHIP_ACCELLERATION;
@@ -127,21 +138,33 @@ public final class ShipHandler
 
 	private static void checkShield(Ship ship)
 	{
-		if ((AbstractScreen.getUserInput().isPressed(GameControls.L1)))
+		if (Gdx.input.isKeyJustPressed(UserControls.get(Control.SHIELD)))
 		{
 			ship.switchShield();
 		}
 	}
 
+	private static void checkNormalFire(Ship ship)
+	{
+		if (Gdx.input.isKeyJustPressed(UserControls.get(Control.NORMAL_FIRE)))
+		{
+			ProjectileManager.getInstance().addShoot(ShootType.NORMAL_LASER, ship.getCenterX(), ship.getCenterY());
+		}
+	}
+
 	private static void checkSecondWeapon(Ship ship)
 	{
-		if ((AbstractScreen.getUserInput().isPressed(GameControls.B)))
+		if (Gdx.input.isKeyPressed(UserControls.get(Control.CHARGE_WEAPON)))
 		{
 			ship.weaponCharge();
 		}
 		else
 		{
-			ship.getSecondaryWeapon().fullDischarge();
+			if (ship.getSecondaryWeapon().isReady())
+			{
+				ProjectileManager.getInstance().addShoot(ShootType.BIG_FLAMES, ship.getCenterX(), ship.getCenterY());
+			}
+			ship.getSecondaryWeapon().disable();
 		}
 	}
 }

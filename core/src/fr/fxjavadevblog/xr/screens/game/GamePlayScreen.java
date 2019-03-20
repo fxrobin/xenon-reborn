@@ -164,7 +164,6 @@ public class GamePlayScreen extends AbstractScreen implements ArtefactsScene
 	{
 		ShipHandler.handle(ship);
 		ship.update(delta);
-		ProjectileManager.checkFire(ship);
 		this.checkMetaKeys();
 		this.scrolling.checkInput();
 	}
