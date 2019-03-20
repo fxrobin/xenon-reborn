@@ -25,7 +25,7 @@ public class XenonScreenFactory
 	
 	public static Screen createScreen(int screenType, XenonControler controler)
 	{
-		if (screenType < 0 && screenType > 2)
+		if (screenType < 0 || screenType > 2)
 		{
 			throw new IllegalArgumentException("XenonScreenType not supported : " + screenType);
 		}
