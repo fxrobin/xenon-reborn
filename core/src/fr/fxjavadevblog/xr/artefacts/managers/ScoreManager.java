@@ -10,7 +10,7 @@ public class ScoreManager
 
 	private static ScoreManager sm = new ScoreManager();
 	
-	public ScoreManager()
+	private ScoreManager()
 	{
 		this.generateBitmapString();
 	}
@@ -26,6 +26,10 @@ public class ScoreManager
 		generateBitmapString();
 	}
 
+	/**
+	 * génère la bitmapString représentant le score à des fin d'optimisation (éviter String.format à chaque image).
+	 * Cette méthode n'est appelée que quand le score change.
+	 */
 	private void generateBitmapString()
 	{
 		String scoreAsString = String.format("%06d", score);
