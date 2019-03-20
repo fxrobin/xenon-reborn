@@ -48,8 +48,8 @@ public class Shield
 
 	private void recharger(float delta)
 	{
-		energy += (delta * Global.SHIELD_CHARGING_SPEED);
-		energy = (energy > Global.SHIELD_MAX_ENERGY) ? Global.SHIELD_MAX_ENERGY : energy;
+		energy += (delta * Global.SHIELD_CHARGING_SPEED);		
+		energy = Math.min(energy, Global.SHIELD_MAX_ENERGY);
 	}
 
 	private void decharger(float delta)
