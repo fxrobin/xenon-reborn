@@ -161,9 +161,4 @@ public class Ship extends AbstractArtefact
 	{
 		return this.secondWeapon;
 	}
-
-	public boolean canFire()
-	{
-		return !this.isShieldActivated() && !this.isFullyDestroyed();
-	}
 }

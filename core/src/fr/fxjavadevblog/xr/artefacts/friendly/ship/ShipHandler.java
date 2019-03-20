@@ -43,18 +43,38 @@ public final class ShipHandler
 
 	public static void handle(Ship ship)
 	{
-		checkVerticalMove(ship);
-		checkHorizontalMove(ship);
-		checkShield(ship);
-		if (ship.canFire())
-		{
-			checkNormalFire(ship);
-			checkSecondWeapon(ship);
-		}
+		handleVerticalMovement(ship);
+		handleHorizontalMovement(ship);
 		handleInertia(ship);
+		
+		if (Gdx.input.isKeyJustPressed(UserControls.get(Control.SHIELD)))
+		{
+			ship.switchShield();
+		}		
+
+		if (!ship.isShieldActivated() && !ship.isFullyDestroyed())
+		{
+			if (Gdx.input.isKeyJustPressed(UserControls.get(Control.NORMAL_FIRE)))
+			{
+				ProjectileManager.getInstance().addShoot(ShootType.NORMAL_LASER, ship.getCenterX(), ship.getCenterY());
+			}
+			
+			if (Gdx.input.isKeyPressed(UserControls.get(Control.CHARGE_WEAPON)))
+			{
+				ship.weaponCharge();
+			}
+			else
+			{
+				if (ship.getSecondaryWeapon().isReady())
+				{
+					ProjectileManager.getInstance().addShoot(ShootType.BIG_FLAMES, ship.getCenterX(), ship.getCenterY());
+				}
+				ship.getSecondaryWeapon().disable();
+			}
+		}
 	}
 
-	private static void checkVerticalMove(Ship ship)
+	private static void handleVerticalMovement(Ship ship)
 	{
 		vControl = ShipInput.Vertical.NONE;
 		/*
@@ -81,7 +101,7 @@ public final class ShipHandler
 		}
 	}
 
-	private static void checkHorizontalMove(Ship ship)
+	private static void handleHorizontalMovement(Ship ship)
 	{
 		hControl = ShipInput.Horizontal.NONE;
 
@@ -134,37 +154,5 @@ public final class ShipHandler
 			result += Global.SHIP_ACCELLERATION / 2;
 		}
 		return result;
-	}
-
-	private static void checkShield(Ship ship)
-	{
-		if (Gdx.input.isKeyJustPressed(UserControls.get(Control.SHIELD)))
-		{
-			ship.switchShield();
-		}
-	}
-
-	private static void checkNormalFire(Ship ship)
-	{
-		if (Gdx.input.isKeyJustPressed(UserControls.get(Control.NORMAL_FIRE)))
-		{
-			ProjectileManager.getInstance().addShoot(ShootType.NORMAL_LASER, ship.getCenterX(), ship.getCenterY());
-		}
-	}
-
-	private static void checkSecondWeapon(Ship ship)
-	{
-		if (Gdx.input.isKeyPressed(UserControls.get(Control.CHARGE_WEAPON)))
-		{
-			ship.weaponCharge();
-		}
-		else
-		{
-			if (ship.getSecondaryWeapon().isReady())
-			{
-				ProjectileManager.getInstance().addShoot(ShootType.BIG_FLAMES, ship.getCenterX(), ship.getCenterY());
-			}
-			ship.getSecondaryWeapon().disable();
-		}
 	}
 }

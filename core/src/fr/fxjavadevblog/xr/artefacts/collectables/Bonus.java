@@ -28,9 +28,9 @@ public class Bonus extends AbstractArtefact
 		this.setInterpolatorX(new Interpolator(Interpolation.sine, 2f, 50, x));
 	}
 	
-	public static Bonus newInstance(BonusType type, int lifeForce, int impactForce, float x, float y, float vX, float vY)
+	public static Bonus newInstance(BonusType type, float x, float y)
 	{
-		return new Bonus(type, lifeForce, impactForce, x, y, vX, vY);
+		return new Bonus(type, type.getLifeForce(), type.getImpactForce(), x, y, type.getVX(), type.getVY());
 	}
 
 	public BonusType getType()
