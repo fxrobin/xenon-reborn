@@ -14,12 +14,11 @@ buildscript {
 }
 
 plugins {
-  id "org.sonarqube" version "2.6"
+  id "org.sonarqube" version "2.7"
 }
 
 allprojects {
     apply plugin: "eclipse"
-    apply plugin: "idea"
 
     version = '1.0'
     ext {
@@ -54,6 +53,7 @@ project(":desktop") {
 
 project(":core") {
     apply plugin: "java"
+    
 
     dependencies {
         compile "com.badlogicgames.gdx:gdx:$gdxVersion"
