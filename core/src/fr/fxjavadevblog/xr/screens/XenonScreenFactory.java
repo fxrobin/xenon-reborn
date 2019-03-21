@@ -12,7 +12,7 @@ import fr.fxjavadevblog.xr.screens.menu.MenuScreen;
  * @author robin
  *
  */
-public class XenonScreenFactory
+public final class XenonScreenFactory
 {
 	public static final int LOADING_SCREEN = 0;
 	public static final int MENU_SCREEN = 1;
@@ -44,5 +44,4 @@ public class XenonScreenFactory
 			}
 		}
 	}
-
 }

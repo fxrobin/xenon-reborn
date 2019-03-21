@@ -9,11 +9,9 @@ import com.badlogic.gdx.Graphics.Monitor;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Interpolation;
 
 import fr.fxjavadevblog.xr.commons.Global;
 import fr.fxjavadevblog.xr.commons.displays.Blinker;
-import fr.fxjavadevblog.xr.commons.displays.Interpolator;
 import fr.fxjavadevblog.xr.commons.fonts.bitmap.FontUtils;
 import fr.fxjavadevblog.xr.commons.fonts.bitmap.GdxBitmapString;
 import fr.fxjavadevblog.xr.commons.fonts.ttf.GdxTrueTypeString;
@@ -37,9 +35,7 @@ public class MenuScreen extends AbstractScreen
 	private BackgroundTravelling backgroundTravelling;
 
 	private Blinker msgBlinker;
-	private Interpolator interpolatorX;
-	private Interpolator interpolatorY;
-
+	
 	private Texture titleTexture;
 	private Texture ghostBustersTexture;
 	
@@ -67,7 +63,7 @@ public class MenuScreen extends AbstractScreen
 		titleX = GdxCommons.calculateCenteredPositionX(titleTexture);
 		titleY = GdxCommons.calculateCenteredPositionY(titleTexture);
 		
-		ghostBustersTexture = TextureAsset.GHOSTBUSTERS.get();
+		ghostBustersTexture = TextureAsset.CODEBUSTERS.get();
 		gbX = GdxCommons.calculateCenteredPositionX(ghostBustersTexture);
 		gbY = titleY + titleTexture.getHeight() + 10;
 		
@@ -76,23 +72,23 @@ public class MenuScreen extends AbstractScreen
 		message = new GdxTrueTypeString(TrueTypeFont.COMPUTER_30_WHITE.getFont(), "");
 		this.createBlinkingMessage();
 		modPlayer = ModPlayer.getInstance();
-		currentMusic = RandomUtils.pickIndex(ModAsset.values());
+		currentMusic = ModAsset.GHOSTBUSTERS.ordinal();
 		log.info("Instanciation de MenuScreen OK");
 	}
 
 	private void createBlinkingMessage()
 	{
 		pressSpaceBarMessage = new GdxBitmapString(FontUtils.FONT_XENON, MSG, 1.5f);
-		interpolatorX = new Interpolator(Interpolation.sine, 1f, 5, (Global.SCREEN_WIDTH - pressSpaceBarMessage.getWidth()) / 2f);
-		interpolatorY = new Interpolator(Interpolation.pow2, 0.5f, 10, (float) (Global.SCREEN_HEIGHT - titleTexture.getHeight()) / 2 - 50);
-		pressSpaceBarMessage.setPosition(interpolatorX.getOriginalValue(), interpolatorY.getOriginalValue());
+		float x = (Global.SCREEN_WIDTH - pressSpaceBarMessage.getWidth()) / 2f;
+		float y = (Global.SCREEN_HEIGHT - titleTexture.getHeight()) / 2f - 50f;
+		pressSpaceBarMessage.setPosition(x, y);
 		msgBlinker = new Blinker(0.15f, pressSpaceBarMessage);
 	}
 
 	@Override
 	public void show()
 	{
-		modPlayer.playLoop(ModAsset.values()[currentMusic].toString());
+		modPlayer.playLoop(ModAsset.GHOSTBUSTERS.toString());
 	}
 
 	@Override
@@ -122,7 +118,6 @@ public class MenuScreen extends AbstractScreen
 
 	private void drawBlinkingMessage(float deltaTime)
 	{
-		pressSpaceBarMessage.setPosition(interpolatorX.calculate(deltaTime), interpolatorY.calculate(deltaTime));
 		this.msgBlinker.render(this.getBatch(), deltaTime);
 	}
 

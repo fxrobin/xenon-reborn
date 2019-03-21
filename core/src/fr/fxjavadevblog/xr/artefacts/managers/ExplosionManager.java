@@ -26,12 +26,6 @@ public final class ExplosionManager
 		/* protection */
 	}
 
-	/**
-	 * ajoute une explosion à l'endroit de l'artefact touché.
-	 * 
-	 * @param artefact
-	 * @param animationAsset
-	 */
 	public static void addExplosion(Artefact artefact, AnimationAsset animationAsset)
 	{
 		addExplosion(artefact.getBoundingCircle().x, artefact.getBoundingCircle().y, animationAsset);

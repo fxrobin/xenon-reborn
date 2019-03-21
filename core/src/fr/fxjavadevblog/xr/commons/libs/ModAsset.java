@@ -10,6 +10,7 @@ public enum ModAsset
 	XENON_ORIGINAL("mods/xenon2.mod"), 
 	XENON_200("mods/xenon220.xm"), 
 	SPACE_MEGAMIX("mods/space-megamix.mod"), 
+	GHOSTBUSTERS("mods/ghostbusters.mod"),
 	INTRO("mods/intro.mod"),;
 
 	final String modName;
