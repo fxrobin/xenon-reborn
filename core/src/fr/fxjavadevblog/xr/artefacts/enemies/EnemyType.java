@@ -15,7 +15,8 @@ public enum EnemyType
 	BIG_ENEMY(TextureAsset.BIG_ENEMY, 20, 20), 
 	RAFALE(TextureAsset.RAFALE, 15, 15), 
 	BLACK_BIRD(TextureAsset.BLACK_BIRD, 15,	15), 
-	XENON_SHIP(TextureAsset.XENON_SHIP, 15, 15);
+	XENON_SHIP(TextureAsset.XENON_SHIP, 15, 15),
+	SLIMER(TextureAsset.SLIMER, 25,25);
 	
 	
 	// optimisation pour ne pas générer un tableau à chaque appel.
