@@ -22,7 +22,6 @@ import fr.fxjavadevblog.xr.commons.libs.SoundAsset;
 import fr.fxjavadevblog.xr.commons.libs.TextureAsset;
 import fr.fxjavadevblog.xr.commons.utils.GdxCommons;
 import fr.fxjavadevblog.xr.commons.utils.ModPlayer;
-import fr.fxjavadevblog.xr.commons.utils.RandomUtils;
 import fr.fxjavadevblog.xr.screens.AbstractScreen;
 import fr.fxjavadevblog.xr.screens.XenonControler;
 import fr.fxjavadevblog.xr.screens.XenonScreen;
@@ -51,7 +50,6 @@ public class MenuScreen extends AbstractScreen
 
 	private ModPlayer modPlayer;
 	private int currentMusic;
-	private GdxBitmapString pressSpaceBarMessage;
 
 	public MenuScreen(XenonControler controler, SpriteBatch batch)
 	{
@@ -78,7 +76,7 @@ public class MenuScreen extends AbstractScreen
 
 	private void createBlinkingMessage()
 	{
-		pressSpaceBarMessage = new GdxBitmapString(FontUtils.FONT_XENON, MSG, 1.5f);
+		GdxBitmapString pressSpaceBarMessage = new GdxBitmapString(FontUtils.FONT_XENON, MSG, 1.5f);
 		float x = (Global.SCREEN_WIDTH - pressSpaceBarMessage.getWidth()) / 2f;
 		float y = (Global.SCREEN_HEIGHT - titleTexture.getHeight()) / 2f - 50f;
 		pressSpaceBarMessage.setPosition(x, y);
