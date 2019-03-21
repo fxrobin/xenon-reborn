@@ -72,7 +72,6 @@ public class BonusManager
 		switch (bonus.getType())
 		{
 			case NORMAL_BONUS:
-				ScoreManager.getInstance().add(100);
 				break;
 			case POWER_UP_BONUS:
 				ship.increaseLife(10);
