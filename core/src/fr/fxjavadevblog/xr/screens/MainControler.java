@@ -34,7 +34,7 @@ public final class MainControler extends Game implements XenonControler
 {
 	private static Log log = LogFactory.getLog(MainControler.class);
 
-	/* pour dessiner des texture et sprites à l'écran */
+	/* pour dessiner des textures et sprites à l'écran */
 	private SpriteBatch batch;
 
 	/* instance du fader pour "fade-in et fade-out" */
@@ -116,7 +116,7 @@ public final class MainControler extends Game implements XenonControler
 	@Override
 	public ShapeRenderer getShapeRenderer()
 	{
-		return shapeRenderer;
+		return this.shapeRenderer;
 	}
 
 	@Override
