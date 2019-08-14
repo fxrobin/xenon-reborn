@@ -6,6 +6,7 @@ import java.util.List;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import fr.fxjavadevblog.xr.artefacts.Artefact;
+import fr.fxjavadevblog.xr.artefacts.friendly.weapons.Position;
 import fr.fxjavadevblog.xr.artefacts.friendly.weapons.Shoot;
 import fr.fxjavadevblog.xr.artefacts.friendly.weapons.ShootType;
 import fr.fxjavadevblog.xr.commons.Global;
@@ -42,7 +43,7 @@ public class ProjectileManager
 		// on va décaller le tir au hasard un peu à droite ou un peu à gauche pour
 		// faire joli.
 		float decallage = RandomUtils.randomRange(-4, 4);
-		Shoot s = new Shoot(shootType.createAnimatedSprite(), shootType.getLifeForce(), shootType.getImpactForce(), centerX + decallage, centerY, shootType.getVX(), shootType.getVY());
+		Shoot s = new Shoot(shootType.createAnimatedSprite(), shootType.getLifeForce(), shootType.getImpactForce(), new Position(centerX + decallage, centerY), shootType.getVX(), shootType.getVY());
 		shoots.add(s);
 		shootType.getSound().play();
 	}

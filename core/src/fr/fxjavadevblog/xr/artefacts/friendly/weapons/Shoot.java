@@ -21,12 +21,12 @@ public class Shoot extends AbstractArtefact
 	private AnimatedSprite animatedSprite;
 	
 
-	public Shoot(AnimatedSprite animatedSprite, int lifeForce, int impactForce, float x, float y, float vX, float vY)
+	public Shoot(AnimatedSprite animatedSprite, int lifeForce, int impactForce, Position parameterObject, float vX, float vY)
 	{
 		super(vX, vY, lifeForce, impactForce);
 		this.animatedSprite = animatedSprite;
-		this.animatedSprite.setCenter(x, y);
-		this.setInterpolatorX(new Interpolator(Interpolation.sine, INTERPOLATOR_TIME, INTERPOLATOR_DISTANCE, x));
+		this.animatedSprite.setCenter(parameterObject.x, parameterObject.y);
+		this.setInterpolatorX(new Interpolator(Interpolation.sine, INTERPOLATOR_TIME, INTERPOLATOR_DISTANCE, parameterObject.x));
 	}
 
 	@Override
