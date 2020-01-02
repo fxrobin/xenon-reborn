@@ -26,7 +26,7 @@ Then enter the directory, then type :
 
 Then open the browse the file system from the project root directory to "desktop/build/lib"
 
-The generated jar name is "desktop-1.0.jar". This JAR file include the game and its dependencies. 
+The generated jar name is "xenon-reborn.jar". This JAR file include the game and its dependencies. 
 
 ## IDE Integration
 
