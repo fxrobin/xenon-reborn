@@ -11,6 +11,32 @@ Here is how the v0.1.8 looks like (Youtube) (just click on the image to launch t
 
 [![Xenon_Reborn_Capture v0.1.8](http://img.youtube.com/vi/ki39sbk4VKc/0.jpg)](https://youtu.be/ki39sbk4VKc)
 
+## How to build
+
+Clone the project (git clone).
+
+Then enter the directory, then type :
+
+- on linux `$ ./gradlew run`
+- on windows `> gradlew run`
+
+## IDE Integration
+
+### Eclipse
+
+- Import project as a gradle project. Let everything as default and click finish.
+- Then open the "desktop" project in the project explorer.
+- Open the "src" folder, then the "fr.fxjavadevblog.xr" package
+- Right-click on the "Launcher.java" class, then "Run as Java Application".
+
+### IntelliJ
+
+- Import project as a gradle project. Let everything as default and click finish.
+- Then open the "desktop" project in the project explorer.
+- Open the "src" folder, then the "fr.fxjavadevblog.xr" package
+- Right-click on the "Launcher.java" class, then "Run Launcher.main()".
+
+
 ## What's technicaly inside ?
 
 - MVC paradigm
