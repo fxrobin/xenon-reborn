@@ -1,11 +1,12 @@
 buildscript {
     
-
     repositories {
         mavenLocal()
         mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         jcenter()
+        google()
     }
     dependencies {
         
@@ -18,14 +19,14 @@ plugins {
 }
 
 allprojects {
-    apply plugin: "eclipse"
-    apply plugin: "idea"
-
+    
     version = '1.0'
     ext {
         appName = "xenon-reborn"
-        gdxVersion = '1.9.8'
-        roboVMVersion = '2.3.3'
+        gdxVersion = '1.9.10'
+        log4JVersion = '2.13.0'
+        commonsLoggingVersion =  '1.2'
+        roboVMVersion = '2.3.8'
         box2DLightsVersion = '1.4'
         ashleyVersion = '1.7.0'
         aiVersion = '1.8.0'
@@ -34,38 +35,41 @@ allprojects {
     repositories {
         mavenLocal()
         mavenCentral()
+        jcenter()
+        google()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
     }
 }
 
 project(":desktop") {
-    apply plugin: "java"
+    apply plugin: "java-library"
 
     dependencies {
-        compile project(":core")
-        compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
-        compile "com.badlogicgames.gdx:gdx-controllers-desktop:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-controllers-platform:$gdxVersion:natives-desktop"
-        compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"     
+        implementation project(":core")
+        api "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+        api "com.badlogicgames.gdx:gdx-controllers-desktop:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-controllers-platform:$gdxVersion:natives-desktop"
+        api "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
     }
 }
 
 project(":core") {
-    apply plugin: "java"
+    apply plugin: "java-library"
 
     dependencies {
-        compile "com.badlogicgames.gdx:gdx:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
-        compile "net.dermetfan.libgdx-utils:libgdx-utils:0.13.4"
-        compile "com.kennycason:gdx-controller:1.1"
-        compile fileTree(dir: '../libs', include: ['*.jar'])
-        runtime group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
-  		runtime group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
-  		compile group: 'org.apache.logging.log4j', name: 'log4j-jcl', version: '2.11.0'
-  		compile group: 'commons-logging', name: 'commons-logging', version: '1.2'	
+        api "com.badlogicgames.gdx:gdx:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
+        api "net.dermetfan.libgdx-utils:libgdx-utils:0.13.4"
+        api "com.kennycason:gdx-controller:1.1"
+        api files('../libs/modplayer-1.0.0.jar')
+        implementation "org.apache.logging.log4j:log4j-api:$log4JVersion"
+  		implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: "$log4JVersion"
+  		implementation group: 'org.apache.logging.log4j', name: 'log4j-jcl', version: "$log4JVersion"
+  		api group: 'commons-logging', name: 'commons-logging', version: "$commonsLoggingVersion"
     }
 }
 
