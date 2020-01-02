@@ -13,20 +13,26 @@ Here is how the v0.1.8 looks like (Youtube) (just click on the image to launch t
 
 ## How to build and run
 
-Clone the project (git clone).
+Clone (or download) the project :
+
+```
+$ git clone https://github.com/fxrobin/XenonReborn.git
+``` 
 
 Then enter the directory, then type :
 
 - on linux `$ ./gradlew run`
 - on windows `> gradlew run`
 
-## How to generate de uber-jar distribution
+## How to generate de JAR distribution
 
 - In a terminal : `$ ./gradlew dist`
 
 Then open the browse the file system from the project root directory to "desktop/build/lib"
 
-The generated jar name is "xenon-reborn.jar". This JAR file include the game and its dependencies. 
+The generated jar name is "xenon-reborn-v.XX.XX.XX.jar". You can run it directly (after setting the executable bit on Linux with running `$ chmod +x xenon-reborn-v.XX.XX.XX.jar` in a terminal.
+ 
+This JAR file include the game and all its dependencies. 
 
 ## IDE Integration
 
