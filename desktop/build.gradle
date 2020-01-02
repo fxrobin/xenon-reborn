@@ -7,6 +7,7 @@ sourceSets.main.resources.srcDirs = ["../core/assets"]
 project.ext.mainClassName = "fr.fxjavadevblog.xr.Launcher"
 project.ext.assetsDir = new File("../core/assets")
 
+
 task run(dependsOn: classes, type: JavaExec) {
     main = project.mainClassName
     classpath = sourceSets.main.runtimeClasspath
@@ -25,6 +26,8 @@ task debug(dependsOn: classes, type: JavaExec) {
 }
 
 task dist(type: Jar) {
+    archivesBaseName = 'xenon-reborn' 
+    version= ""
     manifest {
         attributes 'Main-Class': project.mainClassName
     }

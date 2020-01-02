@@ -1,19 +1,17 @@
 language: java
-
 install: true
-
 os: linux
 dist: trusty
 jdk: openjdk8
-
 script:
-  - ./gradlew dist
-
+- "./gradlew dist"
 deploy:
   provider: releases
-  api_key: $GITHUB_TOKEN
-  file: "./desktop/build/libs/desktop-1.0.jar"
+  api_key: "$GITHUB_TOKEN"
+  file: "./desktop/build/libs/xenon-reborn.jar"
   skip_cleanup: true
   on:
     tags: true
-
+env:
+  global:
+    secure: mfUN5zYX5Zw2THjwrbs1gXe+AGdKfb/eZaRyyQxm3siOebqTw5zxVZK9nUfSTud7Qtz/eYy8pfhCu2okDYS4IqLkwEC8wlOj5xXtINpeM4XleSTmndvU1Ed6KCIDZF/RfaU/EjgK4XKT9UlH9vmP1ZUOXI3xSxPXbjse9GNU6AifHi0R18sBpWbvSNkRSyPXnrXh94mXFcKr6rA1pmEXlF9h4Cu3yoF/wkR9Ymgl1fBSfHsvAEifSmkAyEwNorn9Yiic7CBWUHGrg67BfLLgznFXCbrEwpUYfrPDZfayYtpuTGLI4IaRtIRxl35Yj2iMYwOEMWuRpmg7EJozKVdljC6QB1jRwtCxDcG0+E1hMP3kLY5HFhZBlXYu5ZGeFZ6NTDOEfk4gxVxFEaCS5jGwE/lcu2nZSUZEekSIShsStZFjyMJXBjv5OnYqI9AIZ9vpdXHM816Lh0ViNPQ5JpMmaJMuW9HVtHITBnrn+HoC+XwtZLZiQUXhixOEdm8X9qGXiFnVZ8/fJF8BPqCx9tRrOk9B0A+dc3sOJVOLZFoN2i2od+Cy/BvbebNVAy0eW7tWLGXTR9yshvH0orkOcrN8qCGLjgpwpu3nhXOtnq4149gxwWJg/W3lZLIQb38gBd47M0bwqsmPuiPI/pozfjm11AWDKBzzHA2qmX6o45BX3oE=
