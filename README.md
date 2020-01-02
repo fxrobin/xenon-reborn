@@ -11,7 +11,7 @@ Here is how the v0.1.8 looks like (Youtube) (just click on the image to launch t
 
 [![Xenon_Reborn_Capture v0.1.8](http://img.youtube.com/vi/ki39sbk4VKc/0.jpg)](https://youtu.be/ki39sbk4VKc)
 
-## How to build
+## How to build and run
 
 Clone the project (git clone).
 
