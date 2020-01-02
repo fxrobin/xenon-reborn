@@ -7,4 +7,4 @@ dist: trusty
 jdk: openjdk8
 
 script:
-  - ./gradlew dist --scan -s
+  - ./gradlew dist
