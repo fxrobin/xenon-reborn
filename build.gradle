@@ -16,11 +16,13 @@ buildscript {
 
 plugins {
   id "org.sonarqube" version "2.6"
+  id 'com.palantir.git-version' version '0.12.2'
 }
 
 allprojects {
     
-    version = '1.0'
+    version gitVersion()
+    
     ext {
         appName = "xenon-reborn"
         gdxVersion = '1.9.10'

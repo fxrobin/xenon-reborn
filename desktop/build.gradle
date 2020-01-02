@@ -27,7 +27,6 @@ task debug(dependsOn: classes, type: JavaExec) {
 
 task dist(type: Jar) {
     archivesBaseName = 'xenon-reborn' 
-    version= ""
     manifest {
         attributes 'Main-Class': project.mainClassName
     }
