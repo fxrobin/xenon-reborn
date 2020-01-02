@@ -8,3 +8,12 @@ jdk: openjdk8
 
 script:
   - ./gradlew dist
+
+deploy:
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  file: "./desktop/build/libs/desktop-1.0.jar"
+  skip_cleanup: true
+  on:
+    tags: true
+
