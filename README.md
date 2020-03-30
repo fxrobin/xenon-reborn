@@ -15,9 +15,9 @@ Here is how the v0.1.8 looks like (Youtube) (just click on the image to launch t
 
 Clone (or download) the project :
 
-```
+```bash
 $ git clone https://github.com/fxrobin/XenonReborn.git
-``` 
+```
 
 Then enter the directory, then type :
 
@@ -31,8 +31,8 @@ Then enter the directory, then type :
 Then open the browse the file system from the project root directory to "desktop/build/lib"
 
 The generated jar name is "xenon-reborn-v.XX.XX.XX.jar". You can run it directly (after setting the executable bit on Linux with running `$ chmod +x xenon-reborn-v.XX.XX.XX.jar` in a terminal.
- 
-This JAR file include the game and all its dependencies. 
+
+This JAR file includes the game and all its dependencies.
 
 ## IDE Integration
 
@@ -50,8 +50,7 @@ This JAR file include the game and all its dependencies.
 - Open the "src" folder, then the "fr.fxjavadevblog.xr" package
 - Right-click on the "Launcher.java" class, then "Run Launcher.main()".
 
-
-## What's technicaly inside ?
+## Technical information
 
 - MVC paradigm
 - Screen management and fade-in / fade-out transition (coded from scratch)
@@ -68,7 +67,7 @@ This JAR file include the game and all its dependencies.
 
 - 0% issues in Codacy.
 - All files rated A in Codefactor.
-- Average methods per class : 10 
+- Average methods per class : 10
 - Average LoC per class : 4
 - Lines of code : 3813
 - Nb of classes : 66 (only)
