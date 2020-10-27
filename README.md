@@ -1,5 +1,7 @@
 # XenonReborn
 
+[![Build Status](https://travis-ci.org/fxrobin/XenonReborn.svg?branch=master)](https://travis-ci.org/fxrobin/XenonReborn)
+
 The main goal of this project is to offer a basic framework to implement an old school shoot-them-up game. 
 Rookies can practice algorithm and basic Java programming to acquire developement skills.
 
