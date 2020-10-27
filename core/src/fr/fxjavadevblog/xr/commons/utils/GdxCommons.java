@@ -30,7 +30,7 @@ import fr.fxjavadevblog.xr.commons.Global;
  */
 public final class GdxCommons
 {
-	private static Log log = LogFactory.getLog(GdxCommons.class);
+	private static final Log log = LogFactory.getLog(GdxCommons.class);
 
 	private GdxCommons()
 	{
@@ -38,7 +38,7 @@ public final class GdxCommons
 	}
 
 	/**
-	 * retourne "true" si les codes des touches en paramètres sont toutes activées
+	 * retourne "true" si les codes des touches en paramètre sont toutes activées
 	 * au clavier.
 	 * 
 	 * @param keys

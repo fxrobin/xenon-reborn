@@ -38,7 +38,7 @@ import fr.fxjavadevblog.xr.screens.XenonScreen;
 public class GamePlayScreen extends AbstractScreen implements ArtefactsScene
 {
 
-	private Log log = LogFactory.getLog(this.getClass());
+	private static final Log log = LogFactory.getLog(GamePlayScreen.class);
 
 	private BackgroundParallaxScrolling scrolling;
 	private DashBoard dashBoard;

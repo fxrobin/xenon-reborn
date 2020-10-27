@@ -14,13 +14,15 @@ import fr.fxjavadevblog.xr.commons.libs.AssetLib;
 
 public enum FontUtils
 {
-	FONT_GREEN("/fonts/font-green.properties"), FONT_XENON("/fonts/font-xenon-2.properties"), FONT_BLUE("/fonts/font-blue.properties");
+	FONT_GREEN("/fonts/font-green.properties"),
+	FONT_XENON("/fonts/font-xenon-2.properties"),
+	FONT_BLUE("/fonts/font-blue.properties");
 
 	private final Log log = LogFactory.getLog(FontUtils.class);
 
 	private BitmapFont bitmapFont;
 
-	private FontUtils(String propertyFile)
+	FontUtils(String propertyFile)
 	{
 		Properties config = new Properties();
 		try
