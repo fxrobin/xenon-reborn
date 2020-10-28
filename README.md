@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/fxrobin/XenonReborn.svg?branch=master)](https://travis-ci.org/fxrobin/XenonReborn)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/b8ebef973ed84f11966ddea4d17b5b98)](https://www.codacy.com/manual/fxrobin/XenonReborn/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=fxrobin/XenonReborn&amp;utm_campaign=Badge_Grade)
+[![CodeFactor](https://www.codefactor.io/repository/github/fxrobin/xenonreborn/badge)](https://www.codefactor.io/repository/github/fxrobin/xenonreborn)
 
 The main goal of this project is to offer a basic framework to implement an old school shoot-them-up game. 
 Rookies can practice algorithm and basic Java programming to acquire developement skills.
