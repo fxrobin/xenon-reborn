@@ -41,7 +41,7 @@ public class MenuScreen extends AbstractScreen
 	private Interpolator interpolatorY;
 
 	private Texture titleTexture;
-	private Texture ghostBustersTexture;
+	private Texture upperLogo;
 	
 	private float titleX;
 	private float titleY;
@@ -67,9 +67,9 @@ public class MenuScreen extends AbstractScreen
 		titleX = GdxCommons.calculateCenteredPositionX(titleTexture);
 		titleY = GdxCommons.calculateCenteredPositionY(titleTexture);
 		
-		ghostBustersTexture = TextureAsset.GHOSTBUSTERS.get();
-		gbX = GdxCommons.calculateCenteredPositionX(ghostBustersTexture);
-		gbY = titleY + titleTexture.getHeight() + 10;
+		upperLogo = TextureAsset.UPPER_LOGO.get();
+		gbX = GdxCommons.calculateCenteredPositionX(upperLogo);
+		gbY = titleY + titleTexture.getHeight() + 30;
 		
 		monitor = Gdx.graphics.getMonitor();
 		currentMode = Gdx.graphics.getDisplayMode(monitor);
@@ -108,16 +108,16 @@ public class MenuScreen extends AbstractScreen
 		this.getBatch().begin();
 		this.backgroundTravelling.translateBackGround(deltaTime);
 		this.backgroundTravelling.drawBackGround(this.getBatch());
-		this.drawGhostBusters();
+		this.drawUpperLogo();
 		this.drawTitle();
 		this.drawDisplayMode();
 		this.drawBlinkingMessage(deltaTime);
 		this.getBatch().end();
 	}
 
-	private void drawGhostBusters()
+	private void drawUpperLogo()
 	{
-		this.getBatch().draw(ghostBustersTexture, gbX, gbY);
+		this.getBatch().draw(upperLogo, gbX, gbY);
 	}
 
 	private void drawBlinkingMessage(float deltaTime)

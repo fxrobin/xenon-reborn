@@ -9,7 +9,7 @@ import fr.fxjavadevblog.xr.commons.utils.GdxCommons;
 public enum TextureAsset implements Disposable
 {
 	TITLE("commons/xenon-reborn.png"), 
-	GHOSTBUSTERS("backgrounds/ghostbusters-bzhcamp.png"),
+	UPPER_LOGO("backgrounds/epitech.png"),
 	BACKGROUND_BOMBING_PIXELS("backgrounds/bombing-pixels-white.jpg"), 
 	BACKGROUND_LEFT("backgrounds/left_bg.png", TextureWrap.Repeat), 
 	BACKGROUND_RIGHT("backgrounds/right_bg.png", TextureWrap.Repeat), 

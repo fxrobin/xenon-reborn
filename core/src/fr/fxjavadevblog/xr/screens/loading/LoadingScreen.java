@@ -36,7 +36,7 @@ import fr.fxjavadevblog.xr.screens.XenonScreen;
  */
 public class LoadingScreen extends AbstractScreen
 {
-	private static final String MSG_LOADED = "All resources are loaded / Press SpaceBar / F1 for fullscreen";
+	private static final String MSG_LOADED = "Epitech All resources are loaded / Press SpaceBar / F1 for fullscreen";
 	private Log log = LogFactory.getLog(this.getClass());
 	
 	private AssetLib assetLib = AssetLib.getInstance();
@@ -94,7 +94,7 @@ public class LoadingScreen extends AbstractScreen
 
 	private void renderProgress()
 	{
-		String message = assetLib.isFullyLoaded() ? MSG_LOADED : String.format("LOADING ... %02d %%", assetLib.getProgress());
+		String message = assetLib.isFullyLoaded() ? MSG_LOADED : String.format("LOADING EPITECH ... %02d %%", assetLib.getProgress());
 		layout.setText(font, message);
 		font.draw(this.getBatch(), message, (Global.SCREEN_WIDTH - layout.width) / 2, 80);
 	}
@@ -108,14 +108,21 @@ public class LoadingScreen extends AbstractScreen
 
 	private void checkInput()
 	{
-		if (Gdx.input.isKeyJustPressed(Keys.F1))
-		{
-			GdxCommons.switchFullScreen();
-		}
+		checkKeyF1();
+		checkLoadedAndSpaceBar();
+	}
 
+	private void checkLoadedAndSpaceBar() {
 		if (Gdx.input.isKeyJustPressed(Keys.SPACE) && assetLib.isFullyLoaded())
 		{
 			singleExecutor.execute(); // n'execute la méthode qu'une seule fois.
+		}
+	}
+
+	private void checkKeyF1() {
+		if (Gdx.input.isKeyJustPressed(Keys.F1))
+		{
+			GdxCommons.switchFullScreen();
 		}
 	}
 }
