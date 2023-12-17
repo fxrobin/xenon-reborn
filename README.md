@@ -1,4 +1,4 @@
-# XenonReborn
+# Xenon Reborn
 
 [![Build Status](https://travis-ci.org/fxrobin/XenonReborn.svg?branch=master)](https://travis-ci.org/fxrobin/XenonReborn)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/b8ebef973ed84f11966ddea4d17b5b98)](https://www.codacy.com/manual/fxrobin/XenonReborn/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=fxrobin/XenonReborn&amp;utm_campaign=Badge_Grade)
@@ -20,7 +20,7 @@ Here is how the v0.1.8 looks like (Youtube) (just click on the image to launch t
 Clone (or download) the project :
 
 ```bash
-$ git clone https://github.com/fxrobin/XenonReborn.git
+$ git clone https://github.com/fxrobin/xenon-reborn.git
 ```
 
 Then enter the directory, then type :
@@ -61,9 +61,9 @@ This JAR file includes the game and all its dependencies.
 - Central assets management and loading, through enum
 - Smooth random background scrolling on the menu screen
 - Object states and polymorphism on every stage of the software design
-- Sprite collision oded from scracth based on bounding circles
+- Sprite collision oded from scratch based on bounding circles
 - Music playing an old format (Amiga and Atari-ST Mod format) which is very tiny compared to MP3
-- Parallalax scrolling on the game screen
+- Parallax scrolling on the game screen
 - Java 8 lambdas and method references.
 - etc.
 
